@@ -9,7 +9,7 @@ import './style.css'
 Zfont.init(Zdog)
 
 const imageNumber = `${Math.floor(Math.random() * 56 + 1)}`.padStart(3, '0')
-const bgImage = `/${imageNumber}.jpg`
+const bgImage = `./${imageNumber}.jpg`
 const gridSize = 12
 const yOffset = 0
 const blockText = getBlockText('outer space')
