@@ -14,7 +14,7 @@ const alphabet = {
     'xxxx',
   ],
   c: [
-    'xxxx',
+    ' xxx',
     'x  x',
     'x   ',
     'x  x',
@@ -28,7 +28,7 @@ const alphabet = {
     'xxx ',
   ],
   e: [
-    'xxxx',
+    'xxx ',
     'x   ',
     'xx  ',
     'x  x',
@@ -98,7 +98,7 @@ const alphabet = {
     'x  x',
   ],
   o: [
-    'xxxx',
+    ' xxx',
     'x  x',
     'x  x',
     'x  x',
@@ -106,13 +106,13 @@ const alphabet = {
   ],
   p: [
     'xxxx',
-    'x  x',
+    '   x',
     'xxxx',
     'x   ',
     'x   ',
   ],
   q: [
-    'xxxx',
+    ' xxx',
     'x  x',
     'x  x',
     'x xx',
@@ -171,8 +171,8 @@ const alphabet = {
     'x   x',
     'x   x',
     ' x x ',
-    '  x ',
-    '  x ',
+    '  x  ',
+    '  x  ',
   ],
   z: [
     'xxxx',
@@ -181,6 +181,54 @@ const alphabet = {
     'x   ',
     'xxxx',
   ],
+  '.': [
+    '   ',
+    '   ',
+    '   ',
+    '   ',
+    ' x ',
+    ],
+  '/': [
+    '    x',
+    '   x ',
+    '  x  ',
+    ' x   ',
+    'x    ',
+  ],
+  ' ': [
+    '  ',
+    '  ',
+    '  ',
+    '  ',
+    '  ',
+    ],
 }
 
-export default alphabet
+const getBlockText = (text) => {
+  const textArray = text.toLowerCase().split('')
+  const textBlock = [[],[],[],[],[]]
+  for (let t = 0; t < textArray.length; t++) {
+    if (alphabet[textArray[t]]) {
+      const character = alphabet[textArray[t]]
+      for (let row = 0; row < character.length; row++) {
+        const cols = character[row].split('')
+        for (let col = 0; col < cols.length; col++) {
+          textBlock[row].push(character[row][col] === 'x')
+        }
+      }
+      // Add spacing
+      for (let row = 0; row < character.length; row++) {
+        const cols = character[row].split('')
+        for (let col = 0; col < 1; col++) {
+          textBlock[row].push(false)
+        }
+      }
+    } else {
+      console.warn(`Missing character "${textArray[t]}"`)
+    }
+  }
+
+  return textBlock
+}
+
+export  { alphabet, getBlockText }

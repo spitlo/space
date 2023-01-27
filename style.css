@@ -48,11 +48,11 @@ h1 {
   z-index: 2
 }
 
-#container svg {
-  opacity: 0.9;
+#container canvas {
+  opacity: 0.95;
 }
 
-@media (prefers-color-scheme: light) {
+/*@media (prefers-color-scheme: light) {
   :root {
     color: #213547;
     background-color: #ffffff;
@@ -64,3 +64,4 @@ h1 {
     background-color: #f9f9f9;
   }
 }
+*/
