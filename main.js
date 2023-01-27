@@ -27,7 +27,7 @@ Vibrant.from(bgImage).getPalette()
 
     let ticker = 0
     let cycleCount = 240
-    let interval = 1400
+    let interval = 1800
     let firstRun = true
 
     const animate = () => {
