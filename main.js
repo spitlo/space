@@ -56,7 +56,7 @@ Vibrant.from(bgImage).getPalette()
 
     let illo = new Zdog.Illustration({
       element: '.illo',
-      dragRotate: true,
+      dragRotate: false,
       centered: true,
       rotate: {
         y: -0.28,
