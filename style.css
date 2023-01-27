@@ -17,8 +17,6 @@
 
 body {
   margin: 0;
-/*  display: flex;
-  place-items: center;*/
   min-width: 1024px;
   min-height: 100vh;
 }
@@ -49,7 +47,28 @@ h1 {
 }
 
 #container canvas {
+  position: absolute;
+  top: 0;
+  left: 12px;
   opacity: 0.95;
+  filter: drop-shadow(0 0.2rem 0.25rem rgba(0, 0, 0, 0.8));
+}
+
+#container #scroller {
+  position: absolute;
+  background-repeat: repeat;
+  height: 256px;
+  width: 3072px;
+  animation: scroll 240s linear infinite;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-1024px, 0, 0);
+  }
 }
 
 /*@media (prefers-color-scheme: light) {

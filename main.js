@@ -10,7 +10,7 @@ Zfont.init(Zdog)
 
 const imageNumber = `${Math.floor(Math.random() * 56 + 1)}`.padStart(3, '0')
 const bgImage = `/${imageNumber}.jpg`
-const gridSize = 16
+const gridSize = 12
 const yOffset = 0
 const blockText = getBlockText('outer space')
 const fallbackColor = {
@@ -23,7 +23,7 @@ const fallbackColor = {
 
 Vibrant.from(bgImage).getPalette()
   .then((palette) => {
-    document.querySelector('#container').style = `background-image: url(${bgImage})`
+    document.querySelector('#scroller').style = `background-image: url(${bgImage})`
 
     let ticker = 0
     let cycleCount = 300
@@ -56,7 +56,7 @@ Vibrant.from(bgImage).getPalette()
       addTo: illo,
       font: zFont,
       value: 'WELCOME TO',
-      fontSize: 48,
+      fontSize: 32,
       color: '#ffe',
       stroke: 2,
       fill: true,
