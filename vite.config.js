@@ -1,5 +1,5 @@
 export default {
-  base: '/space/'
+  base: '/space/',
   build: {
     outDir: './docs',
   },
