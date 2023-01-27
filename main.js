@@ -27,26 +27,29 @@ Vibrant.from(bgImage).getPalette()
 
     let ticker = 0
     let cycleCount = 240
-    let interval = 2400
+    let interval = 1400
     let firstRun = true
 
     const animate = () => {
       let progress = ticker / cycleCount;
-      let tween = Zdog.easeInOut( progress % 1, 3 )
-      illo.rotate.x = tween * Zdog.TAU
+      let tween = Zdog.easeInOut(progress % 1, 3)
+
       ticker++
 
       if (ticker < cycleCount && ticker < interval) {
         if (firstRun) {
           illo.zoom = Math.sin(illo.rotate.x / 4)
         }
-        illo.updateRenderGraph()
+        illo.rotate.x = tween * Zdog.TAU
       } else if (ticker > cycleCount && ticker < interval) {
         // Hide?
       } else if (ticker > interval) {
         firstRun = false
         ticker = 0
       }
+
+      illo.rotate.z = Math.sin(new Date().getTime() / 2400) * .04
+      illo.updateRenderGraph()
 
       requestAnimationFrame(animate)
     }
@@ -57,7 +60,6 @@ Vibrant.from(bgImage).getPalette()
       centered: true,
       rotate: {
         y: -0.28,
-        z: -0.02,
       },
     })
 
