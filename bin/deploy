@@ -1,0 +1,94 @@
+#!/usr/bin/env bash
+set -eu
+
+# shellcheck source=./env.globals
+# shellcheck disable=SC1091
+source bin/env.globals
+
+DEFAULT_METHOD="patch"
+MAIN_BRANCH="main"
+INITIAL_VERSION="0.0.0"
+FORCE="no"
+USAGE="
+${BROWN}Usage${NC}: $0 [ARGUMENTS]
+Increases version of project naively (only major, minor and patch) based on current git tag.
+Adds a tag with the new version. Then deploys site.
+${BROWN}Arguments${NC}:
+  [patch|minor|major]   Semver version change. Defaults to 'patch'.
+"
+
+method="$DEFAULT_METHOD"
+
+# Handle args
+for arg in "$@"; do
+  if [ "$arg" = "patch" ] || [ "$arg" = "minor" ] || [ "$arg" = "major" ]; then
+    method="$arg"
+  elif [ "$arg" = "help" ] || [ "$arg" = "--help" ] || [ "$arg" = "-h" ]; then
+    echo -e "$USAGE"
+    exit 0
+  elif [ "$arg" = "--force" ] || [ "$arg" = "-f" ]; then
+    FORCE="yes"
+  else
+    echo "Unknown argument '$arg'"
+    exit 0
+  fi
+done
+
+if [ "$(git symbolic-ref -q HEAD)" != "refs/heads/$MAIN_BRANCH" ]; then
+  if [ "$FORCE" = "no" ]; then
+    echo "Deploying is only allowed from the '$MAIN_BRANCH' branch. Exiting."
+    exit 1
+  fi
+fi
+
+if git status --porcelain|grep -qv '^??'; then
+  if [ "$FORCE" = "no" ]; then
+    echo "Please commit your changes before deploying."
+    exit 1
+  fi
+else
+  echo -e "\n- Pulling from remote origin."
+  git pull origin "$MAIN_BRANCH"
+fi
+
+# Get current tag, or create one if missing
+if current_tag=$(git describe --abbrev=0 2>&1); then
+  echo "Current tag is $current_tag"
+
+  major=$(echo "$current_tag" | tr -d 'v' | cut -d '.' -f 1)
+  minor=$(echo "$current_tag" | tr -d 'v' | cut -d '.' -f 2)
+  patch=$(echo "$current_tag" | tr -d 'v' | cut -d '.' -f 3)
+
+  case "$method" in
+    major)
+      major=$((major + 1))
+      minor=0
+      patch=0
+      ;;
+
+    minor)
+      minor=$((minor + 1))
+      patch=0
+      ;;
+
+    patch)
+      patch=$((patch + 1))
+      ;;
+  esac
+
+  new_version="$major.$minor.$patch"
+else
+  new_version="$INITIAL_VERSION"
+fi
+
+rm -rf ./docs
+yarn build
+
+git add ./docs
+git commit --message "Deploy version $new_version"
+git push origin "$MAIN_BRANCH"
+git tag --annotate "v$new_version" --message "Version $new_version"
+git push --tags
+
+bin/changelog
+git push

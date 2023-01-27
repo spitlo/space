@@ -1,0 +1,51 @@
+#!/usr/bin/env bash
+set -e
+
+function clear_changelog() {
+  if [ ! -f ./CHANGELOG.md ]; then
+    touch CHANGELOG.md
+  fi
+  echo -e "# Changelog\n" > CHANGELOG.md
+  echo -e "This changelog is automatically generated.\n" >> CHANGELOG.md
+}
+
+function write_changelog() {
+  local count previous_tag tag
+  count=0
+  # On first run, just get the first tag and print it as header.
+  # On consecutive runs, diff tag with previous_tag, then print
+  # tag as header for the next run.
+  # For the first tag, only print "First release".
+  for tag in $(git tag --sort "-v:refname"); do
+    if [ "$count" -gt 0 ]; then
+      git log \
+        --pretty=format:"- %s [\`%h\`](../../commit/%H)" \
+        --no-merges \
+        --grep "README.md" \
+        --grep "CHANGELOG.md" \
+        --grep "Deploy version " \
+        --grep "Deploy site " \
+        --invert-grep \
+        "$tag...$previous_tag" >> CHANGELOG.md
+      echo -e "\n\n## $tag\n" >> CHANGELOG.md
+    else
+      echo -e "## $tag\n" >> CHANGELOG.md
+    fi
+    previous_tag="$tag"
+    count=$(( "$count" + 1 ))
+  done
+  echo "- First release" >> CHANGELOG.md
+}
+
+function commit_changelog() {
+  git add ./CHANGELOG.md
+  git commit -m "Update CHANGELOG.md"
+}
+
+function main() {
+  clear_changelog
+  write_changelog
+  commit_changelog
+}
+
+main
