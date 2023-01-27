@@ -49,7 +49,6 @@ if git status --porcelain|grep -qv '^??'; then
 else
   echo -e "\n- Pulling from remote origin."
   git pull origin "$MAIN_BRANCH"
-  git push origin "$MAIN_BRANCH"
 fi
 
 # Get current tag, or create one if missing
