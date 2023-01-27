@@ -26,7 +26,9 @@ Vibrant.from(bgImage).getPalette()
     document.querySelector('#scroller').style = `background-image: url(${bgImage})`
 
     let ticker = 0
-    let cycleCount = 300
+    let cycleCount = 240
+    let interval = 2400
+    let firstRun = true
 
     const animate = () => {
       let progress = ticker / cycleCount;
@@ -34,7 +36,18 @@ Vibrant.from(bgImage).getPalette()
       illo.rotate.x = tween * Zdog.TAU
       ticker++
 
-      illo.updateRenderGraph()
+      if (ticker < cycleCount && ticker < interval) {
+        if (firstRun) {
+          illo.zoom = Math.sin(illo.rotate.x / 4)
+        }
+        illo.updateRenderGraph()
+      } else if (ticker > cycleCount && ticker < interval) {
+        // Hide?
+      } else if (ticker > interval) {
+        firstRun = false
+        ticker = 0
+      }
+
       requestAnimationFrame(animate)
     }
 
@@ -104,5 +117,4 @@ Vibrant.from(bgImage).getPalette()
     }
 
     animate()
-
   })
