@@ -64,7 +64,7 @@ Vibrant.from(bgImage).getPalette()
     })
 
     let zFont = new Zdog.Font({
-      src: '/spitlo_f1.ttf'
+      src: './spitlo_f1.ttf'
     })
 
     const text = new Zdog.TextGroup({
