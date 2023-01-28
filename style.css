@@ -99,7 +99,7 @@ h1 {
 }
 
 #sequencer input.active {
-  border-color: #ffc107;
+  background-color: rgba(255, 193, 7, 0.8);
 }
 
 #controls {
