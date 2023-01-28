@@ -1,5 +1,5 @@
 :root {
-  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+  font-family: monospace;
   font-size: 16px;
   line-height: 24px;
   font-weight: 400;
@@ -107,8 +107,26 @@ h1 {
 }
 
 #controls {
+  font-family: monospace;
+  font-size: 14px;
   position: absolute;
-  top: 256px;
+  top: 216px;
+  left: 30px;
+}
+
+#controls button, #controls label {
+  font-family: monospace;
+  font-size: 14px;
+  padding: 6px 8px;
+  background: rgba(0, 0, 0, 0.8);
+  border-radius: 3px;
+  border-width: 2px;
+  border-style: outset;
+  border-color: #686;
+}
+
+#controls button:hover, #controls label:hover {
+  background: rgba(30, 40, 30, 0.8);
 }
 
 @keyframes scroll {
