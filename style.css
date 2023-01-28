@@ -81,6 +81,10 @@ h1 {
   place-content: center;
 }
 
+#sequencer input:nth-child(4n) {
+  margin-right: 12px;
+}
+
 #sequencer input::before {
   content: "";
   display: block;

@@ -19,7 +19,6 @@ const sounds = []
 const sequencer = () => {
   let index = 0
 
-  // for (const sample of samples) {
   for (let sample = 0; sample < 10; sample++) {
     sounds.push(new Tone.Player(samples.get(sample)).toDestination())
   }
@@ -27,23 +26,27 @@ const sequencer = () => {
   const loop = (time) => {
     let step = index % 16
 
+
     for (let row = 0; row < 10; row++) {
-      const prev = step === 0
-        ? document.querySelector(`.row${row} input:nth-child(16)`)
-        : document.querySelector(`.row${row} input:nth-child(${step})`)
       const current = document.querySelector(`.row${row} input:nth-child(${step + 1})`)
-
-      if (prev) {
-        prev.classList.remove('active')
-      }
-
-      if (current) {
-        current.classList.add('active')
-      }
 
       if (current && current.checked) {
         sounds[row].start()
       }
+
+      Tone.Draw.schedule(() => {
+        const prev = step === 0
+          ? document.querySelector(`.row${row} input:nth-child(16)`)
+          : document.querySelector(`.row${row} input:nth-child(${step})`)
+
+        if (prev) {
+          prev.classList.remove('active')
+        }
+
+        if (current) {
+          current.classList.add('active')
+        }
+      }, time)
     }
 
     index++
