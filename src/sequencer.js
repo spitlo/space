@@ -1,26 +1,30 @@
 import * as Tone from 'tone'
 
-const samples = [
-  './s/kick.wav',
-  './s/snare.wav',
-  './s/clap.wav',
-  './s/hat.wav',
-  './s/cymb.wav',
-  './s/tom.wav',
-  './s/fx1.wav',
-  './s/fx2.wav',
-  './s/synth-C2.wav',
-  './s/synth-C3.wav',
-]
+const samples = new Tone.Buffers({
+  0: './s/kick.wav',
+  1: './s/snare.wav',
+  2: './s/clap.wav',
+  3: './s/hat.wav',
+  4: './s/cymb.wav',
+  5: './s/tom.wav',
+  6: './s/fx1.wav',
+  7: './s/fx2.wav',
+  8: './s/synth-C2.wav',
+  9: './s/synth-C3.wav',
+}, () => {
+  console.log('Samples loaded')
+})
 const sounds = []
-for (const sample of samples) {
-  sounds.push(new Tone.Player(sample).toDestination())
-}
 
 const sequencer = () => {
   let index = 0
 
-  const loop = () => {
+  // for (const sample of samples) {
+  for (let sample = 0; sample < 10; sample++) {
+    sounds.push(new Tone.Player(samples.get(sample)).toDestination())
+  }
+
+  const loop = (time) => {
     let step = index % 16
 
     for (let row = 0; row < 10; row++) {
@@ -38,7 +42,7 @@ const sequencer = () => {
       }
 
       if (current && current.checked) {
-        sounds[row].start('1n')
+        sounds[row].start()
       }
     }
 
@@ -59,7 +63,10 @@ const doForAll = (task) => {
 const setRandomSequence = () => {
   const setRandom = (row, step) => {
     const rnd = Math.random()
-    let probability = 0.15
+    let probability = row > 4 ? 0.10 : 0.15
+    if (row === 3) {
+      probability = 0.5
+    }
     if (step === 0 || step === 4 || step === 8 || step === 12) {
       probability = 0.35
     } else if (step % 2 === 0) {

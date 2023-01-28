@@ -128,34 +128,40 @@ Vibrant.from(bgImage).getPalette()
     animate()
 
     let playing = false
+    let started = false
     let loop
-    const $start = document.getElementById('start')
-    $start.addEventListener('click', ((e) => {
+    const $play = document.getElementById('play')
+    $play.addEventListener('click', async (e) => {
       e.preventDefault()
-      if (playing) {
-        Tone.Transport.stop()
-        playing = false
-        $start.textContent = 'Start'
-      } else {
+      if (!started) {
         if (!loop) {
           loop = sequencer()
         }
+        Tone.start()
         Tone.Transport.bpm.value = 56
         Tone.Transport.scheduleRepeat(loop, '16n')
-        Tone.Transport.start()
-        playing = true
-        $start.textContent = 'Stop'
+        started = true
       }
-    }))
+
+      if (playing) {
+        Tone.Transport.stop()
+        playing = false
+        $play.textContent = 'Play'
+      } else {
+        await Tone.Transport.start()
+        playing = true
+        $play.textContent = 'Stop'
+      }
+    })
 
     const $clear = document.getElementById('clear')
-    $clear.addEventListener('click', (() => {
+    $clear.addEventListener('click', () => {
       clearSequence()
-    }))
+    })
 
     const $randomize = document.getElementById('randomize')
-    $randomize.addEventListener('click', (() => {
+    $randomize.addEventListener('click', () => {
       clearSequence()
       setRandomSequence()
-    }))
+    })
   })
