@@ -2,6 +2,10 @@
 
 This changelog is automatically generated.
 
+## v0.0.11
+
+- Use colors from image for sequencer [`aaa9ec5`](../../commit/aaa9ec5eda38639833c478f50f131219dce5b680)
+
 ## v0.0.10
 
 - One less push in deploy script [`14c7924`](../../commit/14c792435030b082470c67937edd0ffbc256d9e9)
