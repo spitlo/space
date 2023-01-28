@@ -2,6 +2,10 @@
 
 This changelog is automatically generated.
 
+## v0.0.8
+
+- Make sequencer blend in better [`e837dcd`](../../commit/e837dcdc4907652ba2215b5343f05929bab8bcc2)
+
 ## v0.0.7
 
 - Bring attention to play button [`dbd8f4a`](../../commit/dbd8f4a370968e1aa91fc6c320540d27d836bcbb)
