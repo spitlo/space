@@ -33,6 +33,7 @@ const sequencer = () => {
   const loop = (time) => {
     let step = index % 16
 
+    const autoevolve = document.getElementById('autoevolve').checked
 
     for (let row = 0; row < 10; row++) {
       const current = document.querySelector(`.row${row} input:nth-child(${step + 1})`)
@@ -52,6 +53,15 @@ const sequencer = () => {
 
         if (current) {
           current.classList.add('active')
+
+          if (autoevolve) {
+            const evolveProbability = Math.random()
+            if (current.checked && evolveProbability > 0.6) {
+              current.checked = false
+            } else if (!current.checked && evolveProbability > 0.8) {
+              current.checked = true
+            }
+          }
         }
       }, time)
     }
