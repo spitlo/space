@@ -2,6 +2,11 @@
 
 This changelog is automatically generated.
 
+## v0.0.10
+
+- One less push in deploy script [`14c7924`](../../commit/14c792435030b082470c67937edd0ffbc256d9e9)
+- Make randomized sequences less dense [`fd4adcc`](../../commit/fd4adcc3f8e05b4a5bbbccdff7fd6c679b32df50)
+
 ## v0.0.9
 
 - Disable Play while loading samples [`08c6c49`](../../commit/08c6c4938f4831ebc03bd4d693157b3856af5e63)
