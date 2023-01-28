@@ -119,14 +119,14 @@ h1 {
   font-family: monospace;
   font-size: 14px;
   position: absolute;
-  top: 216px;
-  left: 30px;
+  top: 212px;
+  left: 24px;
 }
 
 #controls button, #controls label {
   font-family: monospace;
   font-size: 14px;
-  padding: 6px 8px;
+  padding: 7px 14px;
   background: rgba(0, 0, 0, 0.8);
   border-radius: 3px;
   border-width: 2px;
