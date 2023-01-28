@@ -96,6 +96,7 @@ h1 {
   transform: scale(0);
   transition: 100ms transform ease-in-out;
   box-shadow: inset 1em 1em #3f3;
+  mix-blend-mode: luminosity;
 }
 
 #sequencer input:checked::before {
