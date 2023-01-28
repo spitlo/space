@@ -2,6 +2,10 @@
 
 This changelog is automatically generated.
 
+## v0.0.4
+
+- Load samples immediately [`5785a6c`](../../commit/5785a6c87c1af93d3182a52ccbcce69f0b9d8c60)
+
 ## v0.0.3
 
 - Decrease probability of sounds playing. Better styling [`1c3a21e`](../../commit/1c3a21e888b3247704d40541238d13eff39f76c8)
