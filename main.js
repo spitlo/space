@@ -88,6 +88,12 @@ Vibrant.from(bgImage).getPalette()
       }
     })
 
+    const $sequencer = document.getElementById('sequencer')
+    $sequencer.classList.add('loaded')
+    const root = document.documentElement
+    root.style.setProperty('--seqTrack', palette.Vibrant.getHex())
+    root.style.setProperty('--seqActive', palette.Muted.getHex())
+    root.style.setProperty('--seqPlaying', palette.LightVibrant.getHex())
 
     let paintStarted = false
     let block

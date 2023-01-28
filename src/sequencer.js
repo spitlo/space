@@ -50,11 +50,11 @@ const sequencer = () => {
           : document.querySelector(`.row${row} input:nth-child(${step})`)
 
         if (prev) {
-          prev.classList.remove('active')
+          prev.classList.remove('playing')
         }
 
         if (current) {
-          current.classList.add('active')
+          current.classList.add('playing')
 
           if (autoevolve) {
             const evolveProbability = Math.random()

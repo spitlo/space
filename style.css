@@ -13,6 +13,10 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+
+  --seqTrack: rgba(0, 0, 0, 0.3);
+  --seqActive: rgba(51, 255, 51, 1);
+  --seqPlaying: rgba(255, 193, 7, 0.8);
 }
 
 body {
@@ -67,6 +71,10 @@ h1 {
   top: 0;
   right: 0;
   padding: 6px;
+  opacity: 0;
+}
+
+#sequencer.loaded {
   opacity: 0.8;
 }
 
@@ -76,7 +84,7 @@ h1 {
   margin: 3px;
   width: 20px;
   height: 12px;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: var(--seqTrack);
   border-radius: 4px;
   place-content: center;
 }
@@ -95,7 +103,7 @@ h1 {
   border-radius: 2px;
   transform: scale(0);
   transition: 100ms transform ease-in-out;
-  box-shadow: inset 1em 1em #3f3;
+  box-shadow: inset 16px 8px var(--seqActive);
   mix-blend-mode: luminosity;
 }
 
@@ -103,8 +111,8 @@ h1 {
   transform: scale(1);
 }
 
-#sequencer input.active {
-  background-color: rgba(255, 193, 7, 0.8);
+#sequencer input.playing {
+  background-color: var(--seqPlaying);
 }
 
 #controls {
