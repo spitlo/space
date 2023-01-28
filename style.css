@@ -72,7 +72,7 @@ h1 {
   right: 0;
   padding: 6px;
   opacity: 0;
-  transition: opacity 3s;
+  transition: opacity 4s;
 }
 
 #sequencer.loaded {
