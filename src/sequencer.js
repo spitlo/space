@@ -59,11 +59,11 @@ const doForAll = (task) => {
 const setRandomSequence = () => {
   const setRandom = (row, step) => {
     const rnd = Math.random()
-    let probability = 0.25
+    let probability = 0.15
     if (step === 0 || step === 4 || step === 8 || step === 12) {
-      probability = 0.45
+      probability = 0.35
     } else if (step % 2 === 0) {
-      probability = 0.30
+      probability = 0.20
     }
     if (probability > rnd) {
       const current = document.querySelector(`.row${row} input:nth-child(${step + 1})`)
