@@ -2,6 +2,14 @@
 
 This changelog is automatically generated.
 
+## v0.0.7
+
+- Bring attention to play button [`dbd8f4a`](../../commit/dbd8f4a370968e1aa91fc6c320540d27d836bcbb)
+- Style controls [`d1731c0`](../../commit/d1731c084749f40bd3e1dc87dfa9d2c20fc770db)
+- Add auto-evolve [`29eb4ca`](../../commit/29eb4ca8290b4f97d809fb807278e0504ef48419)
+- Dub style [`52be7e1`](../../commit/52be7e1496a1c4f4e32398e323412eeebd345279)
+- Split sequencer in fourths. Move some DOM stuff to scheduler [`85d278c`](../../commit/85d278cd0b2599f37f6d48a1e9519d93a098c8a5)
+
 ## v0.0.6
 
 - Bring back sequencer step visualizer [`324d859`](../../commit/324d859cbbc305bc0459bd9b4d104d83aa24384d)
