@@ -2,6 +2,10 @@
 
 This changelog is automatically generated.
 
+## v0.1.2
+
+- Fade in sequencer slower [`d697c68`](../../commit/d697c68e95fae5aeeff2edc26210a5f531ea656a)
+
 ## v0.1.1
 
 - Add a few comments [`5083688`](../../commit/5083688074410857cbb9a7e62d790918c6bba188)
