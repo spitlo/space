@@ -1,7 +1,9 @@
 import Zdog from 'zdog'
 import Zfont from 'zfont'
+import * as Tone from 'tone'
 import * as Vibrant from 'node-vibrant'
 
+import { clearSequence, sequencer, setRandomSequence } from './src/sequencer'
 import { getBlockText } from './src/font'
 import { getPhrases } from './src/words'
 
@@ -24,6 +26,8 @@ const fallbackColor = {
   bottomFace: '#636',
 }
 
+setRandomSequence()
+
 Vibrant.from(bgImage).getPalette()
   .then((palette) => {
     document.querySelector('#scroller').style = `background-image: url(${bgImage})`
@@ -34,7 +38,7 @@ Vibrant.from(bgImage).getPalette()
     let firstRun = true
 
     const animate = () => {
-      let progress = ticker / cycleCount;
+      let progress = ticker / cycleCount
       let tween = Zdog.easeInOut(progress % 1, 2)
 
       ticker++
@@ -57,7 +61,7 @@ Vibrant.from(bgImage).getPalette()
       requestAnimationFrame(animate)
     }
 
-    let illo = new Zdog.Illustration({
+    const illo = new Zdog.Illustration({
       element: '.illo',
       dragRotate: false,
       centered: true,
@@ -66,7 +70,7 @@ Vibrant.from(bgImage).getPalette()
       },
     })
 
-    let zFont = new Zdog.Font({
+    const zFont = new Zdog.Font({
       src: './spitlo_f1.ttf'
     })
 
@@ -122,4 +126,36 @@ Vibrant.from(bgImage).getPalette()
     }
 
     animate()
+
+    let playing = false
+    let loop
+    const $start = document.getElementById('start')
+    $start.addEventListener('click', ((e) => {
+      e.preventDefault()
+      if (playing) {
+        Tone.Transport.stop()
+        playing = false
+        $start.textContent = 'Start'
+      } else {
+        if (!loop) {
+          loop = sequencer()
+        }
+        Tone.Transport.bpm.value = 56
+        Tone.Transport.scheduleRepeat(loop, '16n')
+        Tone.Transport.start()
+        playing = true
+        $start.textContent = 'Stop'
+      }
+    }))
+
+    const $clear = document.getElementById('clear')
+    $clear.addEventListener('click', (() => {
+      clearSequence()
+    }))
+
+    const $randomize = document.getElementById('randomize')
+    $randomize.addEventListener('click', (() => {
+      clearSequence()
+      setRandomSequence()
+    }))
   })

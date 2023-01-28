@@ -62,6 +62,47 @@ h1 {
   animation: scroll 240s linear infinite;
 }
 
+#sequencer {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  opacity: 0.8;
+}
+
+#sequencer input {
+  -webkit-appearance: none;
+  appearance: none;
+  margin: 3px;
+  width: 12px;
+  height: 12px;
+  border: 2px solid #fff;
+  border-radius: 3px;
+  place-content: center;
+}
+
+#sequencer input::before {
+  content: "";
+  display: block;
+  width: 8px;
+  height: 8px;
+  transform: scale(0);
+  transition: 100ms transform ease-in-out;
+  box-shadow: inset 1em 1em #3f3;
+}
+
+#sequencer input:checked::before {
+  transform: scale(1);
+}
+
+#sequencer input.active {
+  border-color: #567;
+}
+
+#controls {
+  position: absolute;
+  top: 256px;
+}
+
 @keyframes scroll {
   0% {
     transform: translate3d(0, 0, 0);
