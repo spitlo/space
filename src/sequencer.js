@@ -12,7 +12,9 @@ const samples = new Tone.Buffers({
   8: './s/synth-C2.wav',
   9: './s/synth-C3.wav',
 }, () => {
-  console.log('Samples loaded')
+  const $play = document.getElementById('play')
+  $play.disabled = false
+  $play.textContent = 'Play'
 })
 const sounds = []
 
