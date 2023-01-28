@@ -11,7 +11,7 @@ Zfont.init(Zdog)
 
 const numberOfImages = 78
 const imageNumber = `${Math.floor(Math.random() * numberOfImages + 1)}`.padStart(3, '0')
-const bgImage = `./${imageNumber}.jpg`
+const bgImage = `./i/${imageNumber}.jpg`
 const gridSize = 12
 const yOffset = 0
 const [preLine, mainLine] = getPhrases()
