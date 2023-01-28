@@ -3,16 +3,19 @@ import Zfont from 'zfont'
 import * as Vibrant from 'node-vibrant'
 
 import { getBlockText } from './src/font'
+import { getPhrases } from './src/words'
 
 import './style.css'
 
 Zfont.init(Zdog)
 
-const imageNumber = `${Math.floor(Math.random() * 56 + 1)}`.padStart(3, '0')
+const numberOfImages = 78
+const imageNumber = `${Math.floor(Math.random() * numberOfImages + 1)}`.padStart(3, '0')
 const bgImage = `./${imageNumber}.jpg`
 const gridSize = 12
 const yOffset = 0
-const blockText = getBlockText('outer space')
+const [preLine, mainLine] = getPhrases()
+const blockText = getBlockText(mainLine)
 const fallbackColor = {
   color: '#c25',
   leftFace: '#ea0',
@@ -32,7 +35,7 @@ Vibrant.from(bgImage).getPalette()
 
     const animate = () => {
       let progress = ticker / cycleCount;
-      let tween = Zdog.easeInOut(progress % 1, 3)
+      let tween = Zdog.easeInOut(progress % 1, 2)
 
       ticker++
 
@@ -70,7 +73,7 @@ Vibrant.from(bgImage).getPalette()
     const text = new Zdog.TextGroup({
       addTo: illo,
       font: zFont,
-      value: 'WELCOME TO',
+      value: preLine.toUpperCase(),
       fontSize: 32,
       color: '#ffe',
       stroke: 2,
