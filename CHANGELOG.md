@@ -2,6 +2,10 @@
 
 This changelog is automatically generated.
 
+## v0.0.5
+
+- No white borders in sequencer [`99f25c3`](../../commit/99f25c304422eff6e2de8803a4184c4e3d16d569)
+
 ## v0.0.4
 
 - Load samples immediately [`5785a6c`](../../commit/5785a6c87c1af93d3182a52ccbcce69f0b9d8c60)
