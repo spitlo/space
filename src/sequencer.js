@@ -85,12 +85,9 @@ const doForAll = (task) => {
 const setRandomSequence = () => {
   const setRandom = (row, step) => {
     const rnd = Math.random()
-    let probability = row > 4 ? 0.10 : 0.15
-    if (row === 3) {
-      probability = 0.5
-    }
+    let probability = row > 4 ? 0.08 : 0.10
     if (step === 0 || step === 4 || step === 8 || step === 12) {
-      probability = 0.35
+      probability = 0.25
     } else if (step % 2 === 0) {
       probability = 0.20
     }
