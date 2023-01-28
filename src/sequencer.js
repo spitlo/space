@@ -1,5 +1,6 @@
 import * as Tone from 'tone'
 
+// Put all samples in buffers so they are ready to go when we start
 const samples = new Tone.Buffers({
   0: './s/kick.wav',
   1: './s/snare.wav',
@@ -12,6 +13,7 @@ const samples = new Tone.Buffers({
   8: './s/synth-C2.wav',
   9: './s/synth-C3.wav',
 }, () => {
+  // Samples are loaded, enable play button
   const $play = document.getElementById('play')
   $play.disabled = false
   $play.textContent = 'Play'
@@ -45,6 +47,7 @@ const sequencer = () => {
       }
 
       Tone.Draw.schedule(() => {
+        // Put all DOM stuff we can in a scheduler to enable smooth playing
         const prev = step === 0
           ? document.querySelector(`.row${row} input:nth-child(16)`)
           : document.querySelector(`.row${row} input:nth-child(${step})`)
@@ -57,6 +60,7 @@ const sequencer = () => {
           current.classList.add('playing')
 
           if (autoevolve) {
+            // If mode is set to autoevolve, we want to set or unset a step with some randomness
             const evolveProbability = Math.random()
             if (current.checked && evolveProbability > 0.6) {
               current.checked = false
@@ -74,6 +78,7 @@ const sequencer = () => {
   return loop
 }
 
+// Utility function do run a function once per checkbox
 const doForAll = (task) => {
   for (let row = 0; row < 10; row++) {
     for (let step = 0; step < 16; step++) {
@@ -82,10 +87,14 @@ const doForAll = (task) => {
   }
 }
 
+// Function to generate a sequence based on some logic and some randomness
 const setRandomSequence = () => {
   const setRandom = (row, step) => {
     const rnd = Math.random()
+    // First four rows are basic drums, make them a wee bit more probable
     let probability = row > 4 ? 0.08 : 0.10
+    // Increase the probability for some four on the floor sweetness and general
+    // germaninity by accentuating even steps
     if (step === 0 || step === 4 || step === 8 || step === 12) {
       probability = 0.25
     } else if (step % 2 === 0) {
@@ -99,6 +108,7 @@ const setRandomSequence = () => {
   doForAll(setRandom)
 }
 
+// Function to remove all programming
 const clearSequence = () => {
   const clear = (row, step) => {
     const current = document.querySelector(`.row${row} input:nth-child(${step + 1})`)

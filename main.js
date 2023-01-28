@@ -18,15 +18,13 @@ const gridSize = 12
 const yOffset = -24
 const [preLine, mainLine] = getPhrases()
 const blockText = getBlockText(mainLine)
-const fallbackColor = {
+const fallbackColors = {
   color: '#c25',
   leftFace: '#ea0',
   rightFace: '#e62',
   topFace: '#ed0',
   bottomFace: '#636',
 }
-
-setRandomSequence()
 
 Vibrant.from(bgImage).getPalette()
   .then((palette) => {
@@ -88,13 +86,16 @@ Vibrant.from(bgImage).getPalette()
       }
     })
 
-    const $sequencer = document.getElementById('sequencer')
-    $sequencer.classList.add('loaded')
+    // Show sequencer and set colors based on background image
+    setRandomSequence()
     const root = document.documentElement
     root.style.setProperty('--seqTrack', palette.Vibrant.getHex())
     root.style.setProperty('--seqActive', palette.Muted.getHex())
     root.style.setProperty('--seqPlaying', palette.LightVibrant.getHex())
+    const $sequencer = document.getElementById('sequencer')
+    $sequencer.classList.add('loaded')
 
+    // Add main text
     let paintStarted = false
     let block
     for (let row = 0; row < blockText.length; row++) {
@@ -111,7 +112,7 @@ Vibrant.from(bgImage).getPalette()
             paintStarted = true
             block = new Zdog.Box({
               addTo: illo,
-              ...fallbackColor,
+              ...fallbackColors,
               color: palette.Muted.getHex(),
               leftFace: palette.Vibrant.getHex(),
               rightFace: palette.LightMuted.getHex(),
@@ -133,6 +134,7 @@ Vibrant.from(bgImage).getPalette()
 
     animate()
 
+    // Set up buttons
     let playing = false
     let started = false
     let loop
