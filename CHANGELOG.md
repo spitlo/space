@@ -2,6 +2,10 @@
 
 This changelog is automatically generated.
 
+## v0.0.9
+
+- Disable Play while loading samples [`08c6c49`](../../commit/08c6c4938f4831ebc03bd4d693157b3856af5e63)
+
 ## v0.0.8
 
 - Make sequencer blend in better [`e837dcd`](../../commit/e837dcdc4907652ba2215b5343f05929bab8bcc2)
