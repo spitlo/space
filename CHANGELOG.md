@@ -2,6 +2,10 @@
 
 This changelog is automatically generated.
 
+## v0.1.1
+
+- Add a few comments [`5083688`](../../commit/5083688074410857cbb9a7e62d790918c6bba188)
+
 ## v0.1.0
 
 - More styling [`9394161`](../../commit/939416196309b5fd9ade3b88b926ecf9446af564)
