@@ -138,7 +138,7 @@ Vibrant.from(bgImage).getPalette()
           loop = sequencer()
         }
         Tone.start()
-        Tone.Transport.bpm.value = 56
+        Tone.Transport.bpm.value = 36
         Tone.Transport.scheduleRepeat(loop, '16n')
         started = true
       }

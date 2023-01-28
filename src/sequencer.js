@@ -19,8 +19,15 @@ const sounds = []
 const sequencer = () => {
   let index = 0
 
+  const filter = new Tone.AutoFilter(4).start()
+  const reverb = new Tone.JCReverb(0.4)
+  const volume = new Tone.Volume(-12)
+  const delay = new Tone.PingPongDelay('8n', 0.2)
+
   for (let sample = 0; sample < 10; sample++) {
-    sounds.push(new Tone.Player(samples.get(sample)).toDestination())
+    const player = new Tone.Player(samples.get(sample))
+    player.chain(reverb, filter, delay, volume, Tone.Destination)
+    sounds.push(player)
   }
 
   const loop = (time) => {
