@@ -2,6 +2,12 @@
 
 This changelog is automatically generated.
 
+## v0.1.0
+
+- More styling [`9394161`](../../commit/939416196309b5fd9ade3b88b926ecf9446af564)
+- Styling [`d923c09`](../../commit/d923c09c16f424a86cc2de0bdcfaf5a47b3fd7a5)
+- Improve readme [`c1ae860`](../../commit/c1ae860bf8a8e55211eeb8d760480e42d0bab4d1)
+
 ## v0.0.11
 
 - Use colors from image for sequencer [`aaa9ec5`](../../commit/aaa9ec5eda38639833c478f50f131219dce5b680)
