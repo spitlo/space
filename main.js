@@ -133,6 +133,7 @@ Vibrant.from(bgImage).getPalette()
     const $play = document.getElementById('play')
     $play.addEventListener('click', async (e) => {
       e.preventDefault()
+      $play.classList.remove('unpressed')
       if (!started) {
         if (!loop) {
           loop = sequencer()

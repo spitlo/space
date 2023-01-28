@@ -129,13 +129,19 @@ h1 {
   background: rgba(30, 40, 30, 0.8);
 }
 
+#play.unpressed {
+  animation: pulse 2s infinite;
+}
+
 @keyframes scroll {
-  0% {
-    transform: translate3d(0, 0, 0);
-  }
-  100% {
-    transform: translate3d(-1024px, 0, 0);
-  }
+  0%   { transform: translate3d(0, 0, 0) }
+  100% { transform: translate3d(-1024px, 0, 0) }
+}
+
+@keyframes pulse {
+  0%   { border-color: rgba(30, 40, 30, 0.8) }
+  50%  { border-color: rgba(0, 255, 100, 1) }
+  100% { border-color: rgba(30, 40, 30, 0.8) }
 }
 
 /*@media (prefers-color-scheme: light) {
