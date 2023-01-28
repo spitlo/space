@@ -138,6 +138,17 @@ h1 {
   background: rgba(30, 40, 30, 0.8);
 }
 
+#controls label {
+  position: relative;
+  padding-left: 34px;
+}
+
+#controls label input {
+  position: absolute;
+  top: 5px;
+  left: 8px;
+}
+
 #play.unpressed {
   animation: pulse 2s infinite;
 }
