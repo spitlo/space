@@ -2,6 +2,10 @@
 
 This changelog is automatically generated.
 
+## v0.0.6
+
+- Bring back sequencer step visualizer [`324d859`](../../commit/324d859cbbc305bc0459bd9b4d104d83aa24384d)
+
 ## v0.0.5
 
 - No white borders in sequencer [`99f25c3`](../../commit/99f25c304422eff6e2de8803a4184c4e3d16d569)
