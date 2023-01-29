@@ -184,7 +184,7 @@ function generateName(maxWords) {
   const addPrefixLocation = randomBoolean(0.2)
   const addNumber = randomBoolean(0.1)
   const addSuffixLocation = randomBoolean(0.05)
-  const numberOfWords = maxWords || 3
+  const numberOfWords = maxWords || 2
 
   if (randomBoolean(0.2)) {
     addIfNotPresent(name, generateComposedWord(prefixes, suffixes))
