@@ -2,6 +2,11 @@
 
 This changelog is automatically generated.
 
+## v0.3.1
+
+- Fewer words [`c7a5457`](../../commit/c7a5457fda4fd2484016e10cf7d3035b7a27a43e)
+- Add Synthgen 2000 to readme [`5cdfb6b`](../../commit/5cdfb6be579c6e320915794d480882ce5a8d988e)
+
 ## v0.3.0
 
 - Generate random song + band name on load [`2c37c60`](../../commit/2c37c604ce2695f13d9f51746d99b7a421a9bead)
