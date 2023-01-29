@@ -1,17 +1,18 @@
 import * as Tone from 'tone'
 
 // Put all samples in buffers so they are ready to go when we start
+const kitNumber = `${Math.floor(Math.random() * 3 + 1)}`.padStart(3, '0')
 const samples = new Tone.Buffers({
-  0: './s/kick.wav',
-  1: './s/snare.wav',
-  2: './s/clap.wav',
-  3: './s/hat.wav',
-  4: './s/cymb.wav',
-  5: './s/tom.wav',
-  6: './s/fx1.wav',
-  7: './s/fx2.wav',
-  8: './s/synth-C2.wav',
-  9: './s/synth-C3.wav',
+  0: `./s/${kitNumber}/kick.wav`,
+  1: `./s/${kitNumber}/snare.wav`,
+  2: `./s/${kitNumber}/hat.wav`,
+  3: `./s/${kitNumber}/cymb.wav`,
+  4: `./s/${kitNumber}/fx1.wav`,
+  5: `./s/${kitNumber}/fx2.wav`,
+  6: `./s/${kitNumber}/fx3.wav`,
+  7: `./s/${kitNumber}/fx4.wav`,
+  8: `./s/${kitNumber}/synth-C2.wav`,
+  9: `./s/${kitNumber}/synth-C3.wav`,
 }, () => {
   // Samples are loaded, enable play button
   const $play = document.getElementById('play')

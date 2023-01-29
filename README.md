@@ -12,6 +12,6 @@ The spinning logo thing is done with [Zdog](https://github.com/metafizzy/zdog) a
 - [ ] ~~Create more animations and a way to switch between them~~
 - [x] Remove images that don’t look good enough
 - [ ] Use better sounds
-- [ ] Add a few more kits and load a random one on each reload
+- [x] Add a few more kits and load a random one on each reload
 - [ ] Make the last channel an instrument that plays a note from a randomized scale picked on reload?
 - [ ] Set an initial background while loading image
