@@ -2,6 +2,11 @@
 
 This changelog is automatically generated.
 
+## v0.2.0
+
+- Lower BPM and evovle probability [`147a035`](../../commit/147a035a2a66c927188e0e751526c82892250cf1)
+- Add more kits, randomize on load [`6a562c1`](../../commit/6a562c1b6c1d6782b9f64c11c9da279b103201e4)
+
 ## v0.1.3
 
 - Even slower fade-in for sequence [`4771f1e`](../../commit/4771f1efefd005453bfadf3bcbc950bde74ae799)
