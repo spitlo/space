@@ -2,6 +2,10 @@
 
 This changelog is automatically generated.
 
+## v0.3.0
+
+- Generate random song + band name on load [`2c37c60`](../../commit/2c37c604ce2695f13d9f51746d99b7a421a9bead)
+
 ## v0.2.0
 
 - Lower BPM and evovle probability [`147a035`](../../commit/147a035a2a66c927188e0e751526c82892250cf1)
