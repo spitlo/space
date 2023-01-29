@@ -63,9 +63,9 @@ const sequencer = () => {
           if (autoevolve) {
             // If mode is set to autoevolve, we want to set or unset a step with some randomness
             const evolveProbability = Math.random()
-            if (current.checked && evolveProbability > 0.6) {
+            if (current.checked && evolveProbability > 0.65) {
               current.checked = false
-            } else if (!current.checked && evolveProbability > 0.8) {
+            } else if (!current.checked && evolveProbability > 0.85) {
               current.checked = true
             }
           }
