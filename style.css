@@ -4,10 +4,6 @@
   line-height: 24px;
   font-weight: 400;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -19,11 +15,7 @@
   --seqPlaying: rgba(255, 193, 7, 0.8);
 }
 
-body {
-  margin: 0;
-  min-width: 1024px;
-  min-height: 100vh;
-}
+
 
 h1 {
   font-size: 3.2em;
@@ -64,15 +56,6 @@ h1 {
   height: 256px;
   width: 3072px;
   animation: scroll 240s linear infinite;
-}
-
-#sequencer {
-  position: absolute;
-  top: 0;
-  right: 0;
-  padding: 6px;
-  opacity: 0;
-  transition: opacity 4s;
 }
 
 #sequencer.loaded {
@@ -116,18 +99,16 @@ h1 {
   background-color: var(--seqPlaying);
 }
 
-#controls {
-  font-family: monospace;
-  font-size: 14px;
-  position: absolute;
-  top: 212px;
-  left: 24px;
+#controls.loaded {
+  opacity: 1;
 }
 
 #controls button, #controls label {
+  color: #ececd3;
   font-family: monospace;
   font-size: 14px;
-  padding: 7px 14px;
+  padding: 3px 14px;
+  margin-right: 6px;
   background: rgba(0, 0, 0, 0.8);
   border-radius: 3px;
   border-width: 2px;

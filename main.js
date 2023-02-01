@@ -94,6 +94,8 @@ Vibrant.from(bgImage).getPalette()
     root.style.setProperty('--seqPlaying', palette.LightVibrant.getHex())
     const $sequencer = document.getElementById('sequencer')
     $sequencer.classList.add('loaded')
+    const $controls = document.getElementById('controls')
+    $controls.classList.add('loaded')
 
     // Add main text
     let paintStarted = false
@@ -172,5 +174,10 @@ Vibrant.from(bgImage).getPalette()
     $randomize.addEventListener('click', () => {
       clearSequence()
       setRandomSequence()
+    })
+
+    const $next = document.getElementById('next')
+    $next.addEventListener('click', () => {
+      location.reload()
     })
   })
