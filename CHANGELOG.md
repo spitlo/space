@@ -2,6 +2,11 @@
 
 This changelog is automatically generated.
 
+## v0.4.0
+
+- Change words [`d6b836e`](../../commit/d6b836e097b6c01c53ca02d1f371fec3ab75c847)
+- Add generated samples [`ea54286`](../../commit/ea54286114b25502e7749f58b8bac5234a9a018f)
+
 ## v0.3.1
 
 - Fewer words [`c7a5457`](../../commit/c7a5457fda4fd2484016e10cf7d3035b7a27a43e)
