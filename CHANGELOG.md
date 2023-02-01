@@ -2,6 +2,11 @@
 
 This changelog is automatically generated.
 
+## v0.4.1
+
+- Oops [`8ba3eeb`](../../commit/8ba3eeb73e2f1bbae75ef8684df7304482b3aa9f)
+- Shorter words [`68eaa51`](../../commit/68eaa5158c988378f887744e22d11679306faf3b)
+
 ## v0.4.0
 
 - Change words [`d6b836e`](../../commit/d6b836e097b6c01c53ca02d1f371fec3ab75c847)
