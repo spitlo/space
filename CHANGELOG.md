@@ -2,6 +2,10 @@
 
 This changelog is automatically generated.
 
+## v0.5.0
+
+- Make the last channel an instrument that plays a note from a randomized scale picked on reload [`88e79f7`](../../commit/88e79f75fe9e5296aae7fcac582153259029c75c)
+
 ## v0.4.1
 
 - Oops [`8ba3eeb`](../../commit/8ba3eeb73e2f1bbae75ef8684df7304482b3aa9f)
