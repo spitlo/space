@@ -2,6 +2,11 @@
 
 This changelog is automatically generated.
 
+## v0.5.1
+
+- Smootehr loading. Add 'Next' button to reload [`abca4d1`](../../commit/abca4d19a064c0f8113f12e56cd578f3b065cfaf)
+- Improve readme [`ae5751f`](../../commit/ae5751f6bc2e38a855bcb64e1a8fd84385f4c0e4)
+
 ## v0.5.0
 
 - Make the last channel an instrument that plays a note from a randomized scale picked on reload [`88e79f7`](../../commit/88e79f75fe9e5296aae7fcac582153259029c75c)
