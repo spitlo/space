@@ -1,20 +1,18 @@
 import * as Tone from 'tone'
 
 // Put all samples in buffers so they are ready to go when we start
-const kitNumber = `${Math.floor(Math.random() * 3 + 1)}`.padStart(3, '0')
-const samples = new Tone.Buffers({
-  0: `./s/${kitNumber}/kick.wav`,
-  1: `./s/${kitNumber}/snare.wav`,
-  2: `./s/${kitNumber}/hat.wav`,
-  3: `./s/${kitNumber}/cymb.wav`,
-  4: `./s/${kitNumber}/fx1.wav`,
-  5: `./s/${kitNumber}/fx2.wav`,
-  6: `./s/${kitNumber}/fx3.wav`,
-  7: `./s/${kitNumber}/fx4.wav`,
-  8: `./s/${kitNumber}/synth-C2.wav`,
-  9: `./s/${kitNumber}/synth-C3.wav`,
-}, () => {
+const numberOfKits = 6
+const kitNumber = `${Math.floor(Math.random() * numberOfKits + 1)}`.padStart(3, '0')
+const createKit = (kitNumber) => {
+  const kit = {}
+  for (let n = 0; n < 10; n++) {
+    kit[n] = `./s/${kitNumber}/${n}.wav`
+  }
+  return kit
+}
+const samples = new Tone.Buffers(createKit(kitNumber), () => {
   // Samples are loaded, enable play button
+  console.log(`Loaded kit ${kitNumber} successfully!`)
   const $play = document.getElementById('play')
   $play.disabled = false
   $play.textContent = 'Play'
