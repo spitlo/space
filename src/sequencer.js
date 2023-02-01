@@ -1,5 +1,7 @@
 import * as Tone from 'tone'
 
+import { getElement } from './utils'
+
 // Put all samples in buffers so they are ready to go when we start
 const numberOfKits = 6
 const kitNumber = `${Math.floor(Math.random() * numberOfKits + 1)}`.padStart(3, '0')
@@ -18,6 +20,17 @@ const samples = new Tone.Buffers(createKit(kitNumber), () => {
   $play.textContent = 'Play'
 })
 const sounds = []
+const synth = new Tone.Synth({
+  volume: -6,
+})
+synth.oscillator.type = 'sine'
+const scales = [
+  ['A#3', 'B#3', 'D4', 'D#4', 'E#4', 'G4', 'G#4'], // Mixolydian?
+  ['A3', 'F#4', 'C5', 'D#6'], // ?
+  ['B5', 'D6', 'E6', 'F#6', 'A6'], // Minor pentatonic
+  ['E4', 'F♯4', 'G♯4', 'A4', 'B4', 'C5', 'D5'], // Aeolian Dominant
+]
+const scale = getElement(scales)
 
 const sequencer = () => {
   let index = 0
@@ -30,6 +43,7 @@ const sequencer = () => {
   for (let sample = 0; sample < 10; sample++) {
     const player = new Tone.Player(samples.get(sample))
     player.chain(reverb, filter, delay, volume, Tone.Destination)
+    synth.chain(reverb, filter, delay, Tone.Destination)
     sounds.push(player)
   }
 
@@ -42,7 +56,13 @@ const sequencer = () => {
       const current = document.querySelector(`.row${row} input:nth-child(${step + 1})`)
 
       if (current && current.checked) {
-        sounds[row].start()
+        // For the last row, play notes sometimes and sample sometimes
+        if (row === 9 && Math.random() > 0.2) {
+          const note = getElement(scale)
+          synth.triggerAttackRelease(note, '32n')
+        } else {
+          sounds[row].start()
+        }
       }
 
       Tone.Draw.schedule(() => {
