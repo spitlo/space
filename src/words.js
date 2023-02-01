@@ -79,7 +79,7 @@ const prefixLocations = [
   'Amsterdam',
   'Bangalore',
   'Borneo',
-  'Broadway'
+  'Broadway',
   'Calif.',
   'Dresden',
   'Hong Kong',
@@ -92,7 +92,7 @@ const prefixLocations = [
 ]
 
 const suffixLocations = [
-  'Djungle'
+  'Djungle',
   'Street',
   'Trenches',
   'Valley',
