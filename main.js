@@ -7,6 +7,7 @@ import { clearSequence, sequencer, setRandomSequence } from './src/sequencer'
 import { getBlockText } from './src/font'
 import { getPhrases } from './src/words'
 import { getRandomInt } from './src/utils'
+import { version } from './package.json'
 
 import './style.css'
 
@@ -31,6 +32,9 @@ const bpm = getRandomInt(18, 52)
 Vibrant.from(bgImage).getPalette()
   .then((palette) => {
     document.querySelector('#scroller').style = `background-image: url(${bgImage})`
+    document.querySelector('#version').innerText = `v${version}`
+
+    console.log({version})
 
     let ticker = 0
     let cycleCount = 240

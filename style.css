@@ -15,8 +15,6 @@
   --seqPlaying: rgba(255, 193, 7, 0.8);
 }
 
-
-
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
@@ -56,6 +54,16 @@ h1 {
   height: 256px;
   width: 3072px;
   animation: scroll 240s linear infinite;
+}
+
+#version {
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  background: rgba(0, 20, 0, 0.8);
+  padding: 4px;
+  font-size: 10px;
+  line-height: 10px;
 }
 
 #sequencer.loaded {
