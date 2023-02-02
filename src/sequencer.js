@@ -25,13 +25,19 @@ const synth = new Tone.Synth({
 })
 synth.oscillator.type = 'sine'
 const scales = [
-  ['A#2', 'E#2', 'A#3', 'B#3', 'D4', 'D#4', 'E#4', 'G4', 'G#4'], // Mixolydian?
-  ['A3', 'F#4', 'C5', 'D#6'], // ?
-  ['B2', 'B3', 'B5', 'D6', 'E6', 'F#6', 'A6'], // Minor pentatonic
-  ['E4', 'F♯4', 'G♯4', 'A4', 'B4', 'C5', 'D5'], // Aeolian Dominant
-  ['A2', 'F#2', 'F5', 'F#7', 'G5'], // ?
+  ['A#', 'B#', 'D', 'D#', 'E#', 'G', 'G#'], // Mixolydian?
+  ['A', 'F#', 'C', 'D#'], // ?
+  ['B', 'D', 'E', 'F#', 'A'], // Minor pentatonic
+  ['E', 'F♯', 'G♯', 'A', 'B', 'C', 'D'], // Aeolian Dominant
+  ['A', 'F', 'F#', 'G'], // ?
 ]
 const scale = getArrayElement(scales)
+const durations = [
+  '8n', '8t',
+  '16n', '16t',
+  '32n', '32n', '32t',
+  '64n', '64n', '64t', '64t',
+]
 
 const sequencer = () => {
   let index = 0
@@ -58,9 +64,10 @@ const sequencer = () => {
 
       if (current && current.checked) {
         // For the last row, play notes sometimes and sample sometimes
-        if (row === 9 && getRandomBoolean(0.2)) {
+        if (row === 9 && getRandomBoolean(0.8)) {
           const note = getArrayElement(scale)
-          synth.triggerAttackRelease(note, '32n')
+          const octave = getRandomInt(2, 7)
+          synth.triggerAttackRelease(note + octave, getArrayElement(durations))
         } else {
           sounds[row].start()
         }
@@ -81,9 +88,9 @@ const sequencer = () => {
 
           if (autoevolve) {
             // If mode is set to autoevolve, we want to set or unset a step with some randomness
-            if (current.checked && getRandomBoolean(0.65)) {
+            if (current.checked && getRandomBoolean(0.35)) {
               current.checked = false
-            } else if (!current.checked && getRandomBoolean(0.85)) {
+            } else if (!current.checked && getRandomBoolean(0.15)) {
               current.checked = true
             }
           }
