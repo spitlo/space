@@ -2,6 +2,14 @@
 
 This changelog is automatically generated.
 
+## v0.6.0
+
+- Use Tone.now() when triggering note to avoid weird errors [`450053a`](../../commit/450053a70c222398883a7f6baa4ca0e027c63ac7)
+- Fix logic. Make octaves and note duration random per note [`eb4d1e0`](../../commit/eb4d1e01d17e54b6dd8acfac3dd84c999a725e5d)
+- Make active steps a bit more visible in most scenarios [`579230f`](../../commit/579230f5d2869bd5e9ba32a98310d29204674d35)
+- Code cleanup. Logic changes. More notes [`7a11016`](../../commit/7a110165022cd3186ef26a316d94417494b3bf2b)
+- Add testbuild command [`e157008`](../../commit/e1570088ae836692af9f9e9000b85f2b81103292)
+
 ## v0.5.1
 
 - Smootehr loading. Add 'Next' button to reload [`abca4d1`](../../commit/abca4d19a064c0f8113f12e56cd578f3b065cfaf)
