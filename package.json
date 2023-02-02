@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build --base=/space/",
-    "serve": "vite preview"
+    "serve": "vite preview",
+    "testbuild": "vite build --base=/space/ --outDir=./tmp/testbuild"
   },
   "devDependencies": {
     "vite": "^4.0.0"
