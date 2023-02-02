@@ -67,7 +67,9 @@ const sequencer = () => {
         if (row === 9 && getRandomBoolean(0.8)) {
           const note = getArrayElement(scale)
           const octave = getRandomInt(2, 7)
-          synth.triggerAttackRelease(note + octave, getArrayElement(durations))
+          const duration = getArrayElement(durations)
+          const now = Tone.now()
+          synth.triggerAttackRelease(note + octave, duration,  now)
         } else {
           sounds[row].start()
         }
@@ -121,7 +123,7 @@ const setRandomSequence = () => {
     // Increase the probability for some four on the floor sweetness and general
     // germaninity by accentuating even steps
     if (step === 0 || step === 4 || step === 8 || step === 12) {
-      probability = 0.25
+      probability = 0.30
     } else if (step % 2 === 0) {
       probability = 0.20
     }
