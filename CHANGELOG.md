@@ -2,6 +2,11 @@
 
 This changelog is automatically generated.
 
+## v0.7.3
+
+- v0.7.3 [`0874444`](../../commit/0874444b59ffda750e1f618daf6088c2153f9711)
+- Move version to bottom right [`347386b`](../../commit/347386b40294defd41f92740a3b63b4eb140cc21)
+
 ## v0.7.2
 
 - v0.7.2 [`e6fd9c3`](../../commit/e6fd9c36d04fc22864023839e00f3c5132541b71)
