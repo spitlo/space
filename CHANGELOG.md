@@ -2,6 +2,10 @@
 
 This changelog is automatically generated.
 
+## v0.7.0
+
+- Randomize effects and BPM on load [`fbf0459`](../../commit/fbf045996e69a76378a2bfff5021bc0ace09edce)
+
 ## v0.6.0
 
 - Use Tone.now() when triggering note to avoid weird errors [`450053a`](../../commit/450053a70c222398883a7f6baa4ca0e027c63ac7)
