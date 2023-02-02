@@ -34,8 +34,6 @@ Vibrant.from(bgImage).getPalette()
     document.querySelector('#scroller').style = `background-image: url(${bgImage})`
     document.querySelector('#version').innerText = `v${version}`
 
-    console.log({version})
-
     let ticker = 0
     let cycleCount = 240
     let interval = 1800

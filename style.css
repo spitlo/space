@@ -56,16 +56,6 @@ h1 {
   animation: scroll 240s linear infinite;
 }
 
-#version {
-  position: absolute;
-  top: 6px;
-  left: 6px;
-  background: rgba(0, 20, 0, 0.8);
-  padding: 4px;
-  font-size: 10px;
-  line-height: 10px;
-}
-
 #sequencer.loaded {
   opacity: 0.8;
 }
