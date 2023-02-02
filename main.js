@@ -6,13 +6,14 @@ import * as Vibrant from 'node-vibrant'
 import { clearSequence, sequencer, setRandomSequence } from './src/sequencer'
 import { getBlockText } from './src/font'
 import { getPhrases } from './src/words'
+import { getRandomInt } from './src/utils'
 
 import './style.css'
 
 Zfont.init(Zdog)
 
 const numberOfImages = 78
-const imageNumber = `${Math.floor(Math.random() * numberOfImages + 1)}`.padStart(3, '0')
+const imageNumber = `${getRandomInt(1, numberOfImages)}`.padStart(3, '0')
 const bgImage = `./i/${imageNumber}.jpg`
 const gridSize = 12
 const yOffset = -24
@@ -97,7 +98,7 @@ Vibrant.from(bgImage).getPalette()
     const $controls = document.getElementById('controls')
     $controls.classList.add('loaded')
 
-    // Add main text
+    // Add "band" and "song" name
     let paintStarted = false
     let block
     for (let row = 0; row < blockText.length; row++) {

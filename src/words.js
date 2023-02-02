@@ -1,4 +1,6 @@
 // Name generator based on https://github.com/tirdadc/synthwave
+import { getRandomBoolean } from './utils'
+
 const words = [
   'Action',
   'Arcade',
@@ -170,10 +172,6 @@ function getRandomItem(list, excludeItems) {
   return newItem
 }
 
-function randomBoolean(probability) {
-  return Math.random() > 1 - probability
-}
-
 function addIfNotPresent(list, word) {
   for (let i = 0; i < list.length; i++) {
     if (list[i].includes(word) && word.includes(list[i])) {
@@ -185,12 +183,12 @@ function addIfNotPresent(list, word) {
 
 function generateName(maxWords) {
   const name = []
-  const addPrefixLocation = randomBoolean(0.2)
-  const addNumber = randomBoolean(0.1)
-  const addSuffixLocation = randomBoolean(0.05)
+  const addPrefixLocation = getRandomBoolean(0.2)
+  const addNumber = getRandomBoolean(0.1)
+  const addSuffixLocation = getRandomBoolean(0.05)
   const numberOfWords = maxWords || 2
 
-  if (randomBoolean(0.2)) {
+  if (getRandomBoolean(0.2)) {
     addIfNotPresent(name, generateComposedWord(prefixes, suffixes))
     return name.join('')
   }
