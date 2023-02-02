@@ -26,6 +26,7 @@ const fallbackColors = {
   topFace: '#ed0',
   bottomFace: '#636',
 }
+const bpm = getRandomInt(18, 52)
 
 Vibrant.from(bgImage).getPalette()
   .then((palette) => {
@@ -150,7 +151,7 @@ Vibrant.from(bgImage).getPalette()
           loop = sequencer()
         }
         Tone.start()
-        Tone.Transport.bpm.value = 24
+        Tone.Transport.bpm.value = bpm
         Tone.Transport.scheduleRepeat(loop, '16n')
         started = true
       }

@@ -42,10 +42,11 @@ const durations = [
 const sequencer = () => {
   let index = 0
 
-  const filter = new Tone.AutoFilter(4).start()
-  const reverb = new Tone.JCReverb(0.4)
+  const filter = new Tone.AutoFilter(getRandomInt(2, 5)).start()
+  filter .type = getArrayElement(['sawtooth', 'sine', 'square', 'triangle'])
+  const reverb = new Tone.JCReverb(Math.random())
   const volume = new Tone.Volume(-12)
-  const delay = new Tone.PingPongDelay('8n', 0.2)
+  const delay = new Tone.PingPongDelay(getArrayElement(durations), 0.2)
 
   for (let sample = 0; sample < 10; sample++) {
     const player = new Tone.Player(samples.get(sample))
