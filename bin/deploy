@@ -51,43 +51,24 @@ else
   git pull origin "$MAIN_BRANCH"
 fi
 
-# Get current tag, or create one if missing
-if current_tag=$(git describe --abbrev=0 2>&1); then
-  echo "Current tag is $current_tag"
+# Run a test build. The script will exit on errors
+yarn testbuild
 
-  major=$(echo "$current_tag" | tr -d 'v' | cut -d '.' -f 1)
-  minor=$(echo "$current_tag" | tr -d 'v' | cut -d '.' -f 2)
-  patch=$(echo "$current_tag" | tr -d 'v' | cut -d '.' -f 3)
+# Test build worked, let’s tag this release
+yarn version "--$method"
+new_version=$(git describe --abbrev=0 --tags)
 
-  case "$method" in
-    major)
-      major=$((major + 1))
-      minor=0
-      patch=0
-      ;;
-
-    minor)
-      minor=$((minor + 1))
-      patch=0
-      ;;
-
-    patch)
-      patch=$((patch + 1))
-      ;;
-  esac
-
-  new_version="$major.$minor.$patch"
-else
-  new_version="$INITIAL_VERSION"
-fi
-
+# Remove all old files
 rm -rf ./docs
+
+# Build site
 yarn build
 
+# Add built site, commit and push tags
 git add ./docs
 git commit --message "Deploy version $new_version"
-git tag --annotate "v$new_version" --message "Version $new_version"
 git push --tags
 
+# Generate changelog and push everything
 bin/changelog
 git push origin "$MAIN_BRANCH"
