@@ -91,7 +91,7 @@ Vibrant.from(bgImage).getPalette()
     setRandomSequence()
     const root = document.documentElement
     root.style.setProperty('--seqTrack', palette.Vibrant.getHex())
-    root.style.setProperty('--seqActive', palette.Muted.getHex())
+    root.style.setProperty('--seqActive', palette.LightMuted.getHex())
     root.style.setProperty('--seqPlaying', palette.LightVibrant.getHex())
     const $sequencer = document.getElementById('sequencer')
     $sequencer.classList.add('loaded')
