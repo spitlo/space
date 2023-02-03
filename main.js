@@ -6,8 +6,7 @@ import * as Vibrant from 'node-vibrant'
 import { clearSequence, sequencer, setRandomSequence } from './src/sequencer'
 import { getBlockText } from './src/font'
 import { getPhrases } from './src/words'
-import { getRandomInt } from './src/utils'
-import { version } from './package.json'
+import { getRandomInt,  version } from './src/utils'
 
 import './style.css'
 
@@ -27,7 +26,6 @@ const fallbackColors = {
   topFace: '#ed0',
   bottomFace: '#636',
 }
-const bpm = getRandomInt(18, 52)
 
 Vibrant.from(bgImage).getPalette()
   .then((palette) => {
@@ -143,15 +141,12 @@ Vibrant.from(bgImage).getPalette()
     // Set up buttons
     let playing = false
     let started = false
-    let loop
     const $play = document.getElementById('play')
     $play.addEventListener('click', async (e) => {
       e.preventDefault()
       $play.classList.remove('unpressed')
       if (!started) {
-        if (!loop) {
-          loop = sequencer()
-        }
+        const  [loop, bpm] = sequencer()
         Tone.start()
         Tone.Transport.bpm.value = bpm
         Tone.Transport.scheduleRepeat(loop, '16n')

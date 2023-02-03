@@ -1,6 +1,6 @@
 import * as Tone from 'tone'
 
-import { getArrayElement, getRandomBoolean, getRandomInt } from './utils'
+import { debug, getArrayElement, getRandomBoolean, getRandomInt } from './utils'
 
 // Put all samples in buffers so they are ready to go when we start
 const numberOfKits = 6
@@ -12,42 +12,72 @@ const createKit = (kitNumber) => {
   }
   return kit
 }
+const sounds = []
 const samples = new Tone.Buffers(createKit(kitNumber), () => {
   // Samples are loaded, enable play button
-  console.log(`Loaded kit ${kitNumber} successfully!`)
+  debug(`Loaded kit successfully!`)
   const $play = document.getElementById('play')
   $play.disabled = false
   $play.textContent = 'Play'
 })
-const sounds = []
+
+// Now create a synth for channel 10.
+const oscillatorTypes = [
+  'sine', 'square', 'triangle', 'sawtooth',
+]
 const synth = new Tone.Synth({
   volume: -6,
 })
-synth.oscillator.type = 'sine'
-const scales = [
-  ['A#', 'B#', 'D', 'D#', 'E#', 'G', 'G#'], // Mixolydian?
+const synthType = getRandomBoolean() ? 'pulse' : getArrayElement(oscillatorTypes)
+synth.oscillator.type = synthType
+const filterType = getArrayElement(oscillatorTypes)
+
+// Pick a note collection for this iteration.
+// We have to ways to play a note collection. Either pick a note at random, or
+// play each note in succession, returning back to the start once all notes
+// are played. A note collection "made for" laying a melody will "lean" towards
+// specific notes since reappearing notes will be more likely to be picked.
+// Let’s view this as a feature, not a bug.
+const synthMode = getRandomBoolean() ? 'continuous' : 'random'
+const noteCollections = [
+  ['A#', 'B#', 'D', 'D#', 'E#', 'G', 'G#'], // Mixolydian scale
   ['A', 'F#', 'C', 'D#'], // ?
-  ['B', 'D', 'E', 'F#', 'A'], // Minor pentatonic
-  ['E', 'F♯', 'G♯', 'A', 'B', 'C', 'D'], // Aeolian Dominant
+  ['B', 'D', 'E', 'F#', 'A'], // Minor pentatonic scale
+  ['E', 'F♯', 'G♯', 'A', 'B', 'C', 'D'], // Aeolian Dominant scale
   ['A', 'F', 'F#', 'G'], // ?
 ]
-const scale = getArrayElement(scales)
+const noteCollection = getArrayElement(noteCollections)
 const durations = [
   '8n', '8t',
   '16n', '16t',
   '32n', '32n', '32t',
   '64n', '64n', '64t', '64t',
 ]
+const bpm = getRandomInt(18, 52)
 
+debug(`
+Debug info
+==========
+BPM: ${bpm}
+Kit: ${kitNumber}
+Filter type: ${filterType}
+Synth type: ${synthType}
+Synth mode: ${synthMode}
+Note collection: ${noteCollection}
+`)
+
+// This is the main exorted function. It sets up all effects, creates players
+// for all samples, and finally sets up the main sequencer loop
 const sequencer = () => {
   let index = 0
 
   const filter = new Tone.AutoFilter(getRandomInt(2, 5)).start()
-  filter .type = getArrayElement(['sawtooth', 'sine', 'square', 'triangle'])
+  filter.type = filterType
   const reverb = new Tone.JCReverb(Math.random())
   const volume = new Tone.Volume(-12)
   const delay = new Tone.PingPongDelay(getArrayElement(durations), 0.2)
 
+  // Loop through all the samples in the buffer and assign them to a player
   for (let sample = 0; sample < 10; sample++) {
     const player = new Tone.Player(samples.get(sample))
     player.chain(reverb, filter, delay, volume, Tone.Destination)
@@ -64,13 +94,23 @@ const sequencer = () => {
       const current = document.querySelector(`.row${row} input:nth-child(${step + 1})`)
 
       if (current && current.checked) {
-        // For the last row, play notes sometimes and sample sometimes
-        if (row === 9 && getRandomBoolean(0.8)) {
-          const note = getArrayElement(scale)
+        // For the last row, play notes sometimes and sample sometimes. If we’re
+        // in continuous synth mode, we always play the note, hoping to perhaps
+        // hear a faint melody.
+        if (row === 9 && (synthMode === 'continuous' || getRandomBoolean(0.8))) {
+          let nextNote
+          if (synthMode === 'continuous') {
+            // Get next note in note collection
+            nextNote = noteCollection.shift()
+            // And push it back at the end
+            noteCollection.push(nextNote)
+          } else {
+            nextNote = getArrayElement(noteCollection)
+          }
           const octave = getRandomInt(2, 7)
           const duration = getArrayElement(durations)
           const now = Tone.now()
-          synth.triggerAttackRelease(note + octave, duration,  now)
+          synth.triggerAttackRelease(nextNote + octave, duration,  now)
         } else {
           sounds[row].start()
         }
@@ -104,7 +144,7 @@ const sequencer = () => {
     index++
   }
 
-  return loop
+  return [loop, bpm]
 }
 
 // Utility function do run a function once per checkbox
