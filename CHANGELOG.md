@@ -2,6 +2,10 @@
 
 This changelog is automatically generated.
 
+## v0.8.1
+
+- Set an initial background while loading image. New page background color [`3729228`](../../commit/3729228fd2e04b8b1145066259234c9dc33ebbf6)
+
 ## v0.8.0
 
 - Slightly improve font kerning [`5ca8599`](../../commit/5ca8599090db39d2cf6f8ce31f5c9a28612e01be)
