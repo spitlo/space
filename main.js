@@ -232,4 +232,23 @@ Vibrant.from(bgImage).getPalette()
 This song is now saved. To share it, copy the URL from the address bar.
       `)
     })
+
+    const $help = document.getElementById('help')
+    $help.addEventListener('click', () => {
+      terminal(`
+Help
+====
+If you want to create your own sequence, simply clear the playing sequence,
+disable auto-evolve and create your own sequence by clicking the corresponding dots.
+You cannot change the BPM, the samples or the effects, you can only change the
+sequence. Channel 10 is special, everytime a note is struck on it, it either plays
+the sample for that track, or a short note. If play mode is set to "continuous",
+it will always play a note, the next note from the current scale note collection.
+
+If you’re not happy with the current preset, just click "Next" until you find
+something that you like.
+
+If you want to check out the code for this, visit github.com/spitlo/space
+      `)
+    })
   })
