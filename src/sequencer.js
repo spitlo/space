@@ -45,6 +45,9 @@ const noteCollections = [
   ['B', 'D', 'E', 'F#', 'A'], // Minor pentatonic scale
   ['E', 'F♯', 'G♯', 'A', 'B', 'C', 'D'], // Aeolian Dominant scale
   ['A', 'F', 'F#', 'G'], // ?
+  ['F', 'F', 'C', 'C', 'D', 'D', 'C', 'Bb', 'Bb', 'A', 'A', 'G', 'G', 'F'], // Twinkle
+  ['C', 'G', 'C', 'B', 'F♯', 'B'], // World Riddle?
+  ['G', 'A', 'F', 'F', 'C'], // Close Encounters
 ]
 const noteCollection = getArrayElement(noteCollections)
 const durations = [
