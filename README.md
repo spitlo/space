@@ -16,6 +16,6 @@ The "music" is generated with [Tone.js](https://github.com/Tonejs/Tone.js) from 
 - [x] Use better sounds
 - [x] Add a few more kits and load a random one on each reload
 - [x] Make the last channel an instrument that plays a note from a randomized scale picked on reload?
-- [ ] Set an initial background while loading image
+- [x] Set an initial background while loading image
 - [x] Leave octave out of scales and set at random on play?
 - [ ] Randomize effects on load
