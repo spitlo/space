@@ -2,6 +2,14 @@
 
 This changelog is automatically generated.
 
+## v0.9.0
+
+- Add terminal [`b20796e`](../../commit/b20796ee15580a370e3c37a86ab1f2b21a7bb0b2)
+- Hide body overflow [`5843ff2`](../../commit/5843ff2dddb835d689b670607e11fbfbfa295256)
+- WIP Terminal [`4c3c94e`](../../commit/4c3c94ef1c3e841ceeb4748b6ba1a8f23fab6e72)
+- Add todo item [`a29ebaa`](../../commit/a29ebaab076fc7a8c95d2fa9b8c4e30c345e68f1)
+- Check todo item [`8fe3e48`](../../commit/8fe3e48698ea8f12d0be924b05cf93abf9bbfa12)
+
 ## v0.8.1
 
 - Set an initial background while loading image. New page background color [`3729228`](../../commit/3729228fd2e04b8b1145066259234c9dc33ebbf6)
