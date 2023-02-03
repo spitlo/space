@@ -2,6 +2,10 @@
 
 This changelog is automatically generated.
 
+## v0.9.1
+
+- Don’t mess upp indentation [`d2daea9`](../../commit/d2daea95bd5446352765c9c2ab0ced53d83c6c6d)
+
 ## v0.9.0
 
 - Add terminal [`b20796e`](../../commit/b20796ee15580a370e3c37a86ab1f2b21a7bb0b2)
