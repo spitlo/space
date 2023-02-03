@@ -2,6 +2,13 @@
 
 This changelog is automatically generated.
 
+## v0.11.0
+
+- v0.11.0 [`523321d`](../../commit/523321d40cc14bf6aa7f138eaa3573e4fe3df52d)
+- Play the correct sound when user clicks a dot [`7ab710a`](../../commit/7ab710aa24296078ac120343a42443bbe0e546d4)
+- Add todo item [`88ccad2`](../../commit/88ccad28815df39a61d4271c38365927d37ef2b0)
+- Add "Help" button [`91fea92`](../../commit/91fea925d4979d824b85aefc659c7809f79be9d0)
+
 ## v0.10.0
 
 - v0.10.0 [`42ad536`](../../commit/42ad53696b465bf63fac4ce0198a8a3ba73b67d4)
