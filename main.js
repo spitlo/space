@@ -7,7 +7,7 @@ import { clearSequence, sequencer, setRandomSequence } from './src/sequencer'
 import { getBlockText } from './src/font'
 import { getPhrases } from './src/words'
 import { getRandomInt,  version } from './src/utils'
-import { terminal } from './src/term'
+import { terminal, termRunner } from './src/term'
 
 import './style.css'
 
@@ -27,6 +27,8 @@ const fallbackColors = {
   topFace: '#ed0',
   bottomFace: '#636',
 }
+
+setInterval(termRunner, 100)
 
 Vibrant.from(bgImage).getPalette()
   .then((palette) => {
@@ -168,22 +170,32 @@ Vibrant.from(bgImage).getPalette()
         Tone.Transport.stop()
         playing = false
         $play.textContent = 'Play'
+        terminal('Stopping')
       } else {
         await Tone.Transport.start()
         playing = true
         $play.textContent = 'Stop'
+        terminal('Playing')
       }
     })
 
     const $clear = document.getElementById('clear')
     $clear.addEventListener('click', () => {
       clearSequence()
+      terminal('Clearing sequence')
     })
 
     const $randomize = document.getElementById('randomize')
     $randomize.addEventListener('click', () => {
       clearSequence()
       setRandomSequence()
+      terminal('Randomizing sequence')
+    })
+
+    const $autoevolve = document.getElementById('autoevolve')
+    $autoevolve.addEventListener('change', () => {
+      const checked = $autoevolve.checked
+      terminal(`Auto-evolve is: ${checked ? 'On' : 'Off'}`)
     })
 
     const $next = document.getElementById('next')

@@ -60,8 +60,8 @@ const durations = [
 const bpm = getRandomInt(18, 52)
 
 terminal(`
-Debug info
-==========
+Song info
+=========
 BPM: ${bpm}
 Kit: ${kitNumber}
 Filter type: ${filterType}

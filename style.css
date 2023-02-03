@@ -143,6 +143,9 @@ h1 {
   line-height: 22px;
   padding: 26px;
   color: rgb(80 196 84);
+  overflow-y: scroll;
+  white-space: pre;
+  scroll-behavior: smooth;
 }
 
 #terminal div {
@@ -151,7 +154,7 @@ h1 {
 }
 
 #terminal div.last {
-  margin-bottom: 8px;
+  margin-bottom: 12px;
 }
 
 @keyframes scroll {
