@@ -2,6 +2,13 @@
 
 This changelog is automatically generated.
 
+## v0.8.0
+
+- Slightly improve font kerning [`5ca8599`](../../commit/5ca8599090db39d2cf6f8ce31f5c9a28612e01be)
+- Add melodic note collections [`5e7b8ff`](../../commit/5e7b8ffedfbcdd44d517f4f0c9a29b5cfc6b04b1)
+- Get app version from Vite. Add debug logger. Set BPM in sequencer. Introduce continuous note sequencing. More synth oscillator types [`d2c1d29`](../../commit/d2c1d29f2e63b268aeac75de0be8100ccc3e6eb3)
+- Don’t include 'yarn version' commits in changelog [`453cdd9`](../../commit/453cdd960ddd9d81df8fd889148f206205bc83fc)
+
 ## v0.7.3
 
 - Move version to bottom right [`347386b`](../../commit/347386b40294defd41f92740a3b63b4eb140cc21)
