@@ -4,17 +4,14 @@ This changelog is automatically generated.
 
 ## v0.7.3
 
-- v0.7.3 [`0874444`](../../commit/0874444b59ffda750e1f618daf6088c2153f9711)
 - Move version to bottom right [`347386b`](../../commit/347386b40294defd41f92740a3b63b4eb140cc21)
 
 ## v0.7.2
 
-- v0.7.2 [`e6fd9c3`](../../commit/e6fd9c36d04fc22864023839e00f3c5132541b71)
 - Add version in top left corner [`f3b1cc8`](../../commit/f3b1cc843f21ce6121d8e3f3ad43c73f958b7be1)
 
 ## v0.7.1
 
-- v0.7.1 [`cc15d8d`](../../commit/cc15d8de84ad34c6c7526de6193a0509e6dd7ab9)
 - Try using yarn for tagging [`9627c15`](../../commit/9627c15c9e98c56d1d26953f272a1374123e7902)
 
 ## v0.7.0
