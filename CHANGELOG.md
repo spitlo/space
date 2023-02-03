@@ -2,6 +2,14 @@
 
 This changelog is automatically generated.
 
+## v0.10.0
+
+- v0.10.0 [`42ad536`](../../commit/42ad53696b465bf63fac4ce0198a8a3ba73b67d4)
+- Include auto-evolve value in save [`a22a10e`](../../commit/a22a10e69b5df7b6fbefac26114934b782be76dc)
+- Provide terminal feedback on save [`4fca735`](../../commit/4fca735f048490dbffd1a410151e28e5997fa6a2)
+- Enable saving all settings in a URI fragment [`45e4841`](../../commit/45e48418530987bb6e088916e197d981a6673d2c)
+- Add todo item [`5d5e821`](../../commit/5d5e821736b85a40673bdc98829a81fd7f534f12)
+
 ## v0.9.1
 
 - Don’t mess upp indentation [`d2daea9`](../../commit/d2daea95bd5446352765c9c2ab0ced53d83c6c6d)
