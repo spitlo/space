@@ -185,11 +185,10 @@ Vibrant.from(bgImage).getPalette()
         initiated = true
       }
       if (!started) {
-        Tone.start()
-        started = true
         const  [loop, bpm] = sequencer()
         Tone.Transport.bpm.value = bpm
         Tone.Transport.scheduleRepeat(loop, '16n')
+        started = true
       }
 
       if (playing) {
