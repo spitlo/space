@@ -17,6 +17,7 @@ const sounds = []
 const samples = new Tone.Buffers(createKit(kitNumber), () => {
   // Samples are loaded, enable play button
   terminal(`Loaded kit successfully!`)
+  terminal(`Please press play...`)
   const $play = document.getElementById('play')
   $play.disabled = false
   $play.textContent = 'Play'
