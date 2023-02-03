@@ -23,3 +23,4 @@ The "music" is generated with [Tone.js](https://github.com/Tonejs/Tone.js) from 
   - [ ] If user has cleared and then saves, promt for band and song name before setting save URL?
   - [x] Include auto-evolve value in save
  - [x] Add "Help" button
+ - [ ] Play the correct sound when user clicks a dot?
