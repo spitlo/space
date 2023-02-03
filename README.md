@@ -22,5 +22,6 @@ The "music" is generated with [Tone.js](https://github.com/Tonejs/Tone.js) from 
 - [-] Enable "saving" all settings in a URI fragment
   - [ ] If user has cleared and then saves, promt for band and song name before setting save URL?
   - [x] Include auto-evolve value in save
- - [x] Add "Help" button
- - [x] Play the correct sound when user clicks a dot
+- [x] Add "Help" button
+- [x] Play the correct sound when user clicks a dot
+- [ ] Expose some settings (like BPM) through global functions? So that entering f. ex. `setBPM(55)` would change the BPM of the song?
