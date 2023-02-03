@@ -19,3 +19,4 @@ The "music" is generated with [Tone.js](https://github.com/Tonejs/Tone.js) from 
 - [x] Set an initial background while loading image
 - [x] Leave octave out of scales and set at random on play?
 - [x] Randomize effects on load
+- [ ] Enable "saving" all settings in a URI fragment
