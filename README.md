@@ -19,5 +19,5 @@ The "music" is generated with [Tone.js](https://github.com/Tonejs/Tone.js) from 
 - [x] Set an initial background while loading image
 - [x] Leave octave out of scales and set at random on play?
 - [x] Randomize effects on load
-- [ ] Enable "saving" all settings in a URI fragment
+- [x] Enable "saving" all settings in a URI fragment
   - [ ] If user has cleared and then saves, promt for band and song name before setting save URL

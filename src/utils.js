@@ -1,8 +1,4 @@
-function debug(debugText) {
-  if (import.meta.env.DEV) {
-    console.info(debugText)
-  }
-}
+const debug = import.meta.env.DEV ? console.debug : () => {}
 
 function getArrayElement(arr) {
   return arr[Math.floor(Math.random() * arr.length)]

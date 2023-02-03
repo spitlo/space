@@ -1,11 +1,12 @@
 import * as Tone from 'tone'
 
 import { debug, getArrayElement, getRandomBoolean, getRandomInt } from './utils'
+import { load, save, stash, storage } from './storage'
 import { terminal } from './term'
 
 // Put all samples in buffers so they are ready to go when we start
 const numberOfKits = 6
-const kitNumber = `${getRandomInt(1, numberOfKits)}`.padStart(3, '0')
+const sounds = []
 const createKit = (kitNumber) => {
   const kit = {}
   for (let n = 0; n < 10; n++) {
@@ -13,34 +14,7 @@ const createKit = (kitNumber) => {
   }
   return kit
 }
-const sounds = []
-const samples = new Tone.Buffers(createKit(kitNumber), () => {
-  // Samples are loaded, enable play button
-  terminal(`Loaded kit successfully!`)
-  terminal(`Please press play...`)
-  const $play = document.getElementById('play')
-  $play.disabled = false
-  $play.textContent = 'Play'
-})
 
-// Now create a synth for channel 10.
-const oscillatorTypes = [
-  'sine', 'square', 'triangle', 'sawtooth',
-]
-const synth = new Tone.Synth({
-  volume: -6,
-})
-const synthType = getRandomBoolean() ? 'pulse' : getArrayElement(oscillatorTypes)
-synth.oscillator.type = synthType
-const filterType = getArrayElement(oscillatorTypes)
-
-// Pick a note collection for this iteration.
-// We have to ways to play a note collection. Either pick a note at random, or
-// play each note in succession, returning back to the start once all notes
-// are played. A note collection "made for" laying a melody will "lean" towards
-// specific notes since reappearing notes will be more likely to be picked.
-// Let’s view this as a feature, not a bug.
-const synthMode = getRandomBoolean() ? 'continuous' : 'random'
 const noteCollections = [
   ['A#', 'B#', 'D', 'D#', 'E#', 'G', 'G#'], // Mixolydian scale
   ['A', 'F#', 'C', 'D#'], // ?
@@ -51,36 +25,102 @@ const noteCollections = [
   ['C', 'G', 'C', 'B', 'F♯', 'B'], // World Riddle?
   ['G', 'A', 'F', 'F', 'C'], // Close Encounters
 ]
-const noteCollection = getArrayElement(noteCollections)
 const durations = [
   '8n', '8t',
   '16n', '16t',
   '32n', '32n', '32t',
   '64n', '64n', '64t', '64t',
 ]
-const bpm = getRandomInt(18, 52)
+const oscillatorTypes = [
+  'sine', 'square', 'triangle', 'sawtooth',
+]
 
-terminal(`
+let samples
+let synth
+let synthType
+let filterType
+let filterRate
+let reverbSize
+let delayDuration
+let synthMode
+let noteCollection
+let bpm
+let kitNumber
+
+const init = () => {
+  kitNumber = storage.kitNumber || `${getRandomInt(1, numberOfKits)}`.padStart(3, '0')
+  samples = new Tone.Buffers(createKit(kitNumber), () => {
+    // Samples are loaded, enable play button
+    terminal(`Loaded kit successfully!`)
+    terminal(`Please press play...`)
+    const $play = document.getElementById('play')
+    $play.disabled = false
+    $play.textContent = 'Play'
+  })
+
+  // Now create a synth for channel 10.
+  synth = new Tone.Synth({
+    volume: -6,
+  })
+  synthType = storage.synthType || getRandomBoolean() ? 'pulse' : getArrayElement(oscillatorTypes)
+  synth.oscillator.type = synthType
+  filterType = storage.filterType || getArrayElement(oscillatorTypes)
+  filterRate = storage.filterRate || getRandomInt(2, 5)
+  reverbSize = storage.reverbSize || Math.random()
+  delayDuration = storage.delayDuration || getArrayElement(durations)
+
+  // Pick a note collection for this iteration.
+  // We have to ways to play a note collection. Either pick a note at random, or
+  // play each note in succession, returning back to the start once all notes
+  // are played. A note collection "made for" laying a melody will "lean" towards
+  // specific notes since reappearing notes will be more likely to be picked.
+  // Let’s view this as a feature, not a bug.
+  synthMode = storage.synthMode || getRandomBoolean() ? 'continuous' : 'random'
+  noteCollection = storage.noteCollection || getArrayElement(noteCollections)
+
+  bpm = storage.bpm || getRandomInt(18, 52)
+
+  stash({
+    bpm,
+    filterType,
+    kitNumber,
+    noteCollection,
+    synthMode,
+    synthType,
+    filterRate,
+    reverbSize,
+    delayDuration,
+  })
+
+  if (storage.bandName && storage.songName) {
+    terminal(`Loading "${storage.songName}" by ${storage.bandName}...`)
+  }
+
+  terminal(`
 Song info
 =========
 BPM: ${bpm}
 Kit: ${kitNumber}
 Filter type: ${filterType}
+Filter rate: ${filterRate}
+Reverb size: ${reverbSize}
+Delay duration: ${delayDuration}
 Synth type: ${synthType}
 Synth mode: ${synthMode}
 Note collection: ${noteCollection}
-`)
+  `)
+}
 
 // This is the main exorted function. It sets up all effects, creates players
 // for all samples, and finally sets up the main sequencer loop
 const sequencer = () => {
   let index = 0
 
-  const filter = new Tone.AutoFilter(getRandomInt(2, 5)).start()
+  const filter = new Tone.AutoFilter(filterRate).start()
   filter.type = filterType
-  const reverb = new Tone.JCReverb(Math.random())
+  const reverb = new Tone.JCReverb(reverbSize)
   const volume = new Tone.Volume(-12)
-  const delay = new Tone.PingPongDelay(getArrayElement(durations), 0.2)
+  const delay = new Tone.PingPongDelay(delayDuration, 0.2)
 
   // Loop through all the samples in the buffer and assign them to a player
   for (let sample = 0; sample < 10; sample++) {
@@ -161,6 +201,24 @@ const doForAll = (task) => {
   }
 }
 
+const getSequence = () => {
+  const sequence = [[],[],[],[],[],[],[],[],[],[]]
+  const getCurrent = (row, step) => {
+    const current = document.querySelector(`.row${row} input:nth-child(${step + 1})`)
+    sequence[row][step] = current.checked
+  }
+  doForAll(getCurrent)
+  return sequence
+}
+
+const setSequence = (sequence) => {
+  const setSaved = (row, step) => {
+    const current = document.querySelector(`.row${row} input:nth-child(${step + 1})`)
+    current.checked = sequence[row][step]
+  }
+  doForAll(setSaved)
+}
+
 // Function to generate a sequence based on some logic and some randomness
 const setRandomSequence = () => {
   const setRandom = (row, step) => {
@@ -192,4 +250,4 @@ const clearSequence = () => {
   doForAll(clear)
 }
 
-export { clearSequence, sequencer, setRandomSequence }
+export { clearSequence, init, setRandomSequence, getSequence, setSequence, sequencer }

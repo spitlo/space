@@ -3,23 +3,27 @@ import Zfont from 'zfont'
 import * as Tone from 'tone'
 import * as Vibrant from 'node-vibrant'
 
-import { clearSequence, sequencer, setRandomSequence } from './src/sequencer'
+import { clearSequence, init, setRandomSequence, getSequence, setSequence, sequencer } from './src/sequencer'
 import { getBlockText } from './src/font'
 import { getPhrases } from './src/words'
 import { getRandomInt,  version } from './src/utils'
+import { load, save, stash, storage } from './src/storage'
 import { terminal, termRunner } from './src/term'
 
 import './style.css'
 
 Zfont.init(Zdog)
 
+load()
+init()
+
 const numberOfImages = 78
-const imageNumber = `${getRandomInt(1, numberOfImages)}`.padStart(3, '0')
+const imageNumber = storage.imageNumber || `${getRandomInt(1, numberOfImages)}`.padStart(3, '0')
 const bgImage = `./i/${imageNumber}.jpg`
 const gridSize = 12
 const yOffset = -24
-const [preLine, mainLine] = getPhrases()
-const blockText = getBlockText(mainLine)
+const [bandName, songName] = storage.phrases || getPhrases()
+const blockText = getBlockText(songName)
 const fallbackColors = {
   color: '#c25',
   leftFace: '#ea0',
@@ -27,6 +31,8 @@ const fallbackColors = {
   topFace: '#ed0',
   bottomFace: '#636',
 }
+
+stash({ imageNumber, phrases: [ bandName, songName ] })
 
 setInterval(termRunner, 100)
 
@@ -89,7 +95,7 @@ Vibrant.from(bgImage).getPalette()
     const text = new Zdog.TextGroup({
       addTo: illo,
       font: zFont,
-      value: preLine.toUpperCase(),
+      value: bandName.toUpperCase(),
       fontSize: 32,
       color: '#ffe',
       stroke: 2,
@@ -101,7 +107,11 @@ Vibrant.from(bgImage).getPalette()
     })
 
     // Show sequencer and set colors based on background image
-    setRandomSequence()
+    if (storage.sequence) {
+      setSequence(storage.sequence)
+    } else {
+      setRandomSequence()
+    }
     const root = document.documentElement
     root.style.setProperty('--seqTrack', palette.Vibrant.getHex())
     root.style.setProperty('--seqActive', palette.LightMuted.getHex())
@@ -200,6 +210,17 @@ Vibrant.from(bgImage).getPalette()
 
     const $next = document.getElementById('next')
     $next.addEventListener('click', () => {
-      location.reload()
+      location.href = '.'
+    })
+
+    const $save = document.getElementById('save')
+    $save.addEventListener('click', () => {
+      const sequence = getSequence()
+      stash({
+        bandName,
+        songName,
+        sequence,
+      })
+      save()
     })
   })
