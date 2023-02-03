@@ -25,6 +25,7 @@ function write_changelog() {
         --grep "CHANGELOG.md" \
         --grep "Deploy version " \
         --grep "Deploy site " \
+        --grep "v[[:alnum:]]\.[[:alnum:]]\.[[:alnum:]]" \
         --invert-grep \
         "$tag...$previous_tag" >> CHANGELOG.md
       echo -e "\n\n## $tag\n" >> CHANGELOG.md
