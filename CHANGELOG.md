@@ -2,6 +2,12 @@
 
 This changelog is automatically generated.
 
+## v0.11.1
+
+- v0.11.1 [`cc729ce`](../../commit/cc729ce3d82a35c394def4cbf5b32d33adec6d92)
+- Only start Tone once [`f4bab06`](../../commit/f4bab06d687f99b4c47292a30a528a759ab0ea41)
+- Add todo item [`e0f98f5`](../../commit/e0f98f511a155aa10e4fa822a5bb7a639f400fb8)
+
 ## v0.11.0
 
 - v0.11.0 [`523321d`](../../commit/523321d40cc14bf6aa7f138eaa3573e4fe3df52d)
