@@ -15,18 +15,7 @@
   --seqPlaying: rgba(255, 193, 7, 0.8);
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-#container {
-  width: 100%;
-  margin: 0 auto;
-  text-align: center;
-}
-
-#container::before {
+body::before {
   background: linear-gradient(rgba(18,16,16,0) 50%, rgba(0,0,0,0.25) 50%),linear-gradient(90deg, rgba(255,0,0,0.06), rgba(0,255,0,0.02), rgba(0,0,255,0.06));
   background-size: 100% 2px, 3px 100%;
   bottom: 0;
@@ -38,6 +27,17 @@ h1 {
   right: 0;
   top: 0;
   z-index: 2
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+#container {
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
 }
 
 #container canvas {
@@ -133,6 +133,27 @@ h1 {
   animation: pulse 2s infinite;
 }
 
+#terminal {
+  position: absolute;
+  top: 256px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  font-size: 14px;
+  line-height: 22px;
+  padding: 26px;
+  color: rgb(80 196 84);
+}
+
+#terminal div {
+  animation: fadeIn 0.8s;
+  text-shadow: 0 0 5px rgb(80 196 84 / 60%);
+}
+
+#terminal div.last {
+  margin-bottom: 8px;
+}
+
 @keyframes scroll {
   0%   { transform: translate3d(0, 0, 0) }
   100% { transform: translate3d(-1024px, 0, 0) }
@@ -142,6 +163,11 @@ h1 {
   0%   { border-color: rgba(30, 40, 30, 0.8) }
   50%  { border-color: rgba(0, 255, 100, 1) }
   100% { border-color: rgba(30, 40, 30, 0.8) }
+}
+
+@keyframes fadeIn {
+  0%   { opacity: 0 }
+  100% { opacity: 1 }
 }
 
 /*@media (prefers-color-scheme: light) {

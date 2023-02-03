@@ -7,6 +7,7 @@ import { clearSequence, sequencer, setRandomSequence } from './src/sequencer'
 import { getBlockText } from './src/font'
 import { getPhrases } from './src/words'
 import { getRandomInt,  version } from './src/utils'
+import { terminal } from './src/term'
 
 import './style.css'
 
@@ -36,6 +37,15 @@ Vibrant.from(bgImage).getPalette()
     let cycleCount = 240
     let interval = 1800
     let firstRun = true
+
+    terminal('Color scheme loaded.')
+    terminal(`Palette:
+  Muted: ${palette.Muted.getHex()}
+  Vibrant: ${palette.Vibrant.getHex()}
+  LightMuted: ${palette.LightMuted.getHex()}
+  LightVibrant: ${palette.LightVibrant.getHex()}
+  DarkVibrant: ${palette.DarkVibrant.getHex()}
+`)
 
     const animate = () => {
       let progress = ticker / cycleCount
@@ -136,6 +146,7 @@ Vibrant.from(bgImage).getPalette()
       }
     }
 
+    terminal('Initiating animation...')
     animate()
 
     // Set up buttons

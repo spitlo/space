@@ -1,6 +1,7 @@
 import * as Tone from 'tone'
 
 import { debug, getArrayElement, getRandomBoolean, getRandomInt } from './utils'
+import { terminal } from './term'
 
 // Put all samples in buffers so they are ready to go when we start
 const numberOfKits = 6
@@ -15,7 +16,7 @@ const createKit = (kitNumber) => {
 const sounds = []
 const samples = new Tone.Buffers(createKit(kitNumber), () => {
   // Samples are loaded, enable play button
-  debug(`Loaded kit successfully!`)
+  terminal(`Loaded kit successfully!`)
   const $play = document.getElementById('play')
   $play.disabled = false
   $play.textContent = 'Play'
@@ -58,7 +59,7 @@ const durations = [
 ]
 const bpm = getRandomInt(18, 52)
 
-debug(`
+terminal(`
 Debug info
 ==========
 BPM: ${bpm}
