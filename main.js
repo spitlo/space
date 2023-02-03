@@ -222,5 +222,8 @@ Vibrant.from(bgImage).getPalette()
         sequence,
       })
       save()
+      terminal(`
+This song is now saved. To share it, copy the URL from the address bar.
+      `)
     })
   })
