@@ -3,7 +3,7 @@ import Zfont from 'zfont'
 import * as Tone from 'tone'
 import * as Vibrant from 'node-vibrant'
 
-import { clearSequence, init, setRandomSequence, getSequence, setSequence, sequencer } from './src/sequencer'
+import { addClickEvents, clearSequence, init, setRandomSequence, getSequence, setSequence, sequencer } from './src/sequencer'
 import { getBlockText } from './src/font'
 import { getPhrases } from './src/words'
 import { getRandomInt,  version } from './src/utils'
@@ -162,18 +162,34 @@ Vibrant.from(bgImage).getPalette()
     animate()
 
     // Set up buttons
+    let initiated = false
+    addClickEvents(() => {
+      // We need to use the click events on the sequence dots to start sound,
+      // since browsers don’t allow playing sound without interaction.
+      init(true) // Silent init
+      sequencer(true) // Only load samples
+      if (!initiated) {
+        Tone.start()
+        initiated = true
+      }
+    })
+
     let playing = false
     let started = false
     const $play = document.getElementById('play')
     $play.addEventListener('click', async (e) => {
       e.preventDefault()
       $play.classList.remove('unpressed')
-      if (!started) {
-        const  [loop, bpm] = sequencer()
+      if (!initiated) {
         Tone.start()
+        initiated = true
+      }
+      if (!started) {
+        Tone.start()
+        started = true
+        const  [loop, bpm] = sequencer()
         Tone.Transport.bpm.value = bpm
         Tone.Transport.scheduleRepeat(loop, '16n')
-        started = true
       }
 
       if (playing) {

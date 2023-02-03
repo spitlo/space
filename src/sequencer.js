@@ -47,12 +47,14 @@ let noteCollection
 let bpm
 let kitNumber
 
-const init = () => {
+const init = (silent = false) => {
   kitNumber = storage.kitNumber || `${getRandomInt(1, numberOfKits)}`.padStart(3, '0')
   samples = new Tone.Buffers(createKit(kitNumber), () => {
     // Samples are loaded, enable play button
-    terminal(`Loaded kit successfully!`)
-    terminal(`Please press play...`)
+    if (!silent) {
+      terminal(`Loaded kit successfully!`)
+      terminal(`Please press play...`)
+    }
     const $play = document.getElementById('play')
     $play.disabled = false
     $play.textContent = 'Play'
@@ -93,27 +95,54 @@ const init = () => {
   })
 
   if (storage.bandName && storage.songName) {
-    terminal(`Loading "${storage.songName}" by ${storage.bandName}...`)
+    if (!silent) {
+      terminal(`Loading "${storage.songName}" by ${storage.bandName}...`)
+    }
   }
 
-  terminal(`
-Song info
-=========
-BPM: ${bpm}
-Kit: ${kitNumber}
-Filter type: ${filterType}
-Filter rate: ${filterRate}
-Reverb size: ${reverbSize}
-Delay duration: ${delayDuration}
-Synth type: ${synthType}
-Synth mode: ${synthMode}
-Note collection: ${noteCollection}
-  `)
+  if (!silent) {
+      terminal(`
+  Song info
+  =========
+  BPM: ${bpm}
+  Kit: ${kitNumber}
+  Filter type: ${filterType}
+  Filter rate: ${filterRate}
+  Reverb size: ${reverbSize}
+  Delay duration: ${delayDuration}
+  Synth type: ${synthType}
+  Synth mode: ${synthMode}
+  Note collection: ${noteCollection}
+      `)
+  }
+}
+
+const playNoteOrSample = (row) => {
+  // For the last row, play notes sometimes and sample sometimes. If we’re
+  // in continuous synth mode, we always play the note, hoping to perhaps
+  // hear a faint melody.
+  if (row === 9 && (synthMode === 'continuous' || getRandomBoolean(0.8))) {
+    let nextNote
+    if (synthMode === 'continuous') {
+      // Get next note in note collection
+      nextNote = noteCollection.shift()
+      // And push it back at the end
+      noteCollection.push(nextNote)
+    } else {
+      nextNote = getArrayElement(noteCollection)
+    }
+    const octave = getRandomInt(2, 7)
+    const duration = getArrayElement(durations)
+    const now = Tone.now()
+    synth.triggerAttackRelease(nextNote + octave, duration,  now)
+  } else {
+    sounds[row].start()
+  }
 }
 
 // This is the main exorted function. It sets up all effects, creates players
 // for all samples, and finally sets up the main sequencer loop
-const sequencer = () => {
+const sequencer = (loadOnly = false) => {
   let index = 0
 
   const filter = new Tone.AutoFilter(filterRate).start()
@@ -130,6 +159,10 @@ const sequencer = () => {
     sounds.push(player)
   }
 
+  if (loadOnly) {
+    return
+  }
+
   const loop = (time) => {
     let step = index % 16
 
@@ -139,26 +172,7 @@ const sequencer = () => {
       const current = document.querySelector(`.row${row} input:nth-child(${step + 1})`)
 
       if (current && current.checked) {
-        // For the last row, play notes sometimes and sample sometimes. If we’re
-        // in continuous synth mode, we always play the note, hoping to perhaps
-        // hear a faint melody.
-        if (row === 9 && (synthMode === 'continuous' || getRandomBoolean(0.8))) {
-          let nextNote
-          if (synthMode === 'continuous') {
-            // Get next note in note collection
-            nextNote = noteCollection.shift()
-            // And push it back at the end
-            noteCollection.push(nextNote)
-          } else {
-            nextNote = getArrayElement(noteCollection)
-          }
-          const octave = getRandomInt(2, 7)
-          const duration = getArrayElement(durations)
-          const now = Tone.now()
-          synth.triggerAttackRelease(nextNote + octave, duration,  now)
-        } else {
-          sounds[row].start()
-        }
+        playNoteOrSample(row)
       }
 
       Tone.Draw.schedule(() => {
@@ -201,11 +215,24 @@ const doForAll = (task) => {
   }
 }
 
+const addClickEvents = (setup) => {
+  setup()
+  const addEvent = (row, step) => {
+    const $current = document.querySelector(`.row${row} input:nth-child(${step + 1})`)
+    $current.addEventListener('click', () => {
+      if ($current.checked ) {
+        playNoteOrSample(row)
+      }
+    })
+  }
+  doForAll(addEvent)
+}
+
 const getSequence = () => {
   const sequence = [[],[],[],[],[],[],[],[],[],[]]
   const getCurrent = (row, step) => {
-    const current = document.querySelector(`.row${row} input:nth-child(${step + 1})`)
-    sequence[row][step] = current.checked
+    const $current = document.querySelector(`.row${row} input:nth-child(${step + 1})`)
+    sequence[row][step] = $current.checked
   }
   doForAll(getCurrent)
   return sequence
@@ -213,8 +240,8 @@ const getSequence = () => {
 
 const setSequence = (sequence) => {
   const setSaved = (row, step) => {
-    const current = document.querySelector(`.row${row} input:nth-child(${step + 1})`)
-    current.checked = sequence[row][step]
+    const $current = document.querySelector(`.row${row} input:nth-child(${step + 1})`)
+    $current.checked = sequence[row][step]
   }
   doForAll(setSaved)
 }
@@ -232,8 +259,8 @@ const setRandomSequence = () => {
       probability = 0.20
     }
     if (getRandomBoolean(probability)) {
-      const current = document.querySelector(`.row${row} input:nth-child(${step + 1})`)
-      current.checked = true
+      const $current = document.querySelector(`.row${row} input:nth-child(${step + 1})`)
+      $current.checked = true
     }
   }
   doForAll(setRandom)
@@ -242,12 +269,12 @@ const setRandomSequence = () => {
 // Function to remove all programming
 const clearSequence = () => {
   const clear = (row, step) => {
-    const current = document.querySelector(`.row${row} input:nth-child(${step + 1})`)
-    if (current) {
-      current.checked = false
+    const $current = document.querySelector(`.row${row} input:nth-child(${step + 1})`)
+    if ($current) {
+      $current.checked = false
     }
   }
   doForAll(clear)
 }
 
-export { clearSequence, init, setRandomSequence, getSequence, setSequence, sequencer }
+export { addClickEvents, clearSequence, init, setRandomSequence, getSequence, setSequence, sequencer }
