@@ -203,9 +203,15 @@ Vibrant.from(bgImage).getPalette()
     })
 
     const $autoevolve = document.getElementById('autoevolve')
+    if (storage.autoevolve === 'off') {
+      $autoevolve.checked = false
+    }
     $autoevolve.addEventListener('change', () => {
       const checked = $autoevolve.checked
       terminal(`Auto-evolve is: ${checked ? 'On' : 'Off'}`)
+      stash({
+        autoevolve: checked ? 'on' : 'off',
+      })
     })
 
     const $next = document.getElementById('next')
