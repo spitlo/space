@@ -2,6 +2,12 @@
 
 This changelog is automatically generated.
 
+## v0.11.2
+
+- v0.11.2 [`7fc80a6`](../../commit/7fc80a65578d6b38851caeea6420853c30a92a76)
+- Mobile issues fix attempt 1 [`565e1fd`](../../commit/565e1fdce9b286d01c55f19a77445e44a05dc1d0)
+- Fixes [`038cbc8`](../../commit/038cbc8f7effe003316505b29a2572a69ffaf2a1)
+
 ## v0.11.1
 
 - v0.11.1 [`cc729ce`](../../commit/cc729ce3d82a35c394def4cbf5b32d33adec6d92)
