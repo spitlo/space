@@ -180,10 +180,12 @@ Vibrant.from(bgImage).getPalette()
     $play.addEventListener('click', async (e) => {
       e.preventDefault()
       $play.classList.remove('unpressed')
+
       if (!initiated) {
         Tone.start()
         initiated = true
       }
+
       if (!started) {
         const  [loop, bpm] = sequencer()
         Tone.Transport.bpm.value = bpm
@@ -238,8 +240,6 @@ Vibrant.from(bgImage).getPalette()
     $save.addEventListener('click', () => {
       const sequence = getSequence()
       stash({
-        bandName,
-        songName,
         sequence,
       })
       save()

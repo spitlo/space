@@ -94,25 +94,23 @@ const init = (silent = false) => {
     delayDuration,
   })
 
-  if (storage.bandName && storage.songName) {
-    if (!silent) {
-      terminal(`Loading "${storage.songName}" by ${storage.bandName}...`)
-    }
+  if (!silent && storage.phrases) {
+    terminal(`Loading "${storage.phrases[1]}" by ${storage.phrases[0]}...`)
   }
 
   if (!silent) {
       terminal(`
-  Song info
-  =========
-  BPM: ${bpm}
-  Kit: ${kitNumber}
-  Filter type: ${filterType}
-  Filter rate: ${filterRate}
-  Reverb size: ${reverbSize}
-  Delay duration: ${delayDuration}
-  Synth type: ${synthType}
-  Synth mode: ${synthMode}
-  Note collection: ${noteCollection}
+Song info
+=========
+BPM: ${bpm}
+Kit: ${kitNumber}
+Filter type: ${filterType}
+Filter rate: ${filterRate}
+Reverb size: ${reverbSize}
+Delay duration: ${delayDuration}
+Synth type: ${synthType}
+Synth mode: ${synthMode}
+Note collection: ${noteCollection}
       `)
   }
 }
