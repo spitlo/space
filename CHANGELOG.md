@@ -2,6 +2,11 @@
 
 This changelog is automatically generated.
 
+## v0.12.0
+
+- v0.12.0 [`daed70b`](../../commit/daed70bb5d791a8c538dfaf2d9e217a59ec7113f)
+- mobile styling [`a1ae3ec`](../../commit/a1ae3ecfe42967c0c65324b6250f0d45edd6b127)
+
 ## v0.11.2
 
 - v0.11.2 [`7fc80a6`](../../commit/7fc80a65578d6b38851caeea6420853c30a92a76)
