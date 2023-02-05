@@ -2,6 +2,11 @@
 
 This changelog is automatically generated.
 
+## v0.12.3
+
+- v0.12.3 [`c32cc98`](../../commit/c32cc982a5305764dd37d2f68760b00d03d884f3)
+- Make terminal scrollable on larger screens [`5467c27`](../../commit/5467c27c8cdd6180e76d0a69e02e8672e77ed41b)
+
 ## v0.12.2
 
 - v0.12.2 [`ef98314`](../../commit/ef98314bddcb082149719efa21298656f313d0fc)
