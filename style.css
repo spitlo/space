@@ -138,11 +138,6 @@ h1 {
 }
 
 #terminal {
-  /* position: absolute; */
-  /* top: 256px; */
-  /* left: 0;
-  right: 0;
-  bottom: 0; */
   font-size: 14px;
   line-height: 22px;
   padding: 26px;
@@ -150,6 +145,16 @@ h1 {
   overflow-y: scroll;
   white-space: pre;
   scroll-behavior: smooth;
+}
+
+@media (min-width: 1161px) {
+  #terminal {
+    position: absolute;
+    top: 256px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
 }
 
 #terminal div {
