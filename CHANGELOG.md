@@ -2,6 +2,11 @@
 
 This changelog is automatically generated.
 
+## v0.12.1
+
+- v0.12.1 [`a7a5394`](../../commit/a7a53941aacb0a77f4bcd21c6237b6c9227ba313)
+- Minor style changes [`43f5831`](../../commit/43f5831d888a0708b87cb51a25430f2bd1c3e06f)
+
 ## v0.12.0
 
 - v0.12.0 [`daed70b`](../../commit/daed70bb5d791a8c538dfaf2d9e217a59ec7113f)
