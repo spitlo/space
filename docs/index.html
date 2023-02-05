@@ -8,15 +8,14 @@
     <style>
       body {
         margin: 0;
-        min-width: 1024px;
         min-height: 100vh;
         color: #f5f5f9;
         background-color: #091411;
-        overflow: hidden;
       }
 
       #container {
-        height: 256px;
+        position: relative;
+        height: var(--containerHeight);
         overflow: hidden;
         background-position: center;
         background-repeat: no-repeat;
@@ -32,13 +31,29 @@
         transition: opacity 4s;
       }
 
+      @media (max-width: 1280px) {
+        #sequencer {
+          position: static;
+          padding: 21px;
+          overflow: scroll;
+          white-space: nowrap;
+        }
+
+        #container canvas {
+          transform: scale(0.45);
+          transform-origin: 0 0;
+        }
+      }
+
       #controls {
         font-family: monospace;
         font-size: 14px;
+        text-align: left;
         position: absolute;
-        top: 212px;
+        z-index: 2;
+        bottom: 12px;
         left: 24px;
-        display: flex;
+        right: 24px;
         opacity: 0;
       }
 
@@ -52,12 +67,23 @@
         line-height: 10px;
       }
     </style>
-    <script type="module" crossorigin src="/space/assets/index-f5f2b329.js"></script>
-    <link rel="stylesheet" href="/space/assets/index-e505f516.css">
+    <script type="module" crossorigin src="/space/assets/index-ce339ae3.js"></script>
+    <link rel="stylesheet" href="/space/assets/index-eb3fed61.css">
   </head>
 
   <body>
     <div id="container">
+      <div id="controls">
+        <button id="play" class="unpressed" disabled>Loading</button>
+        <button id="clear">Clear</button>
+        <button id="randomize">Randomize</button>
+        <label>
+          <input type="checkbox" id="autoevolve" checked> Auto-evolve
+        </label>
+        <button id="next">Next</button>
+        <button id="save">Save</button>
+        <button id="help">?</button>
+      </div>
       <div id="scroller"></div>
       <canvas class="illo" width="1024" height="256"></canvas>
     </div>
@@ -125,18 +151,6 @@
         <input type="checkbox"><input type="checkbox"><input type="checkbox"><input type="checkbox">
         <input type="checkbox"><input type="checkbox"><input type="checkbox"><input type="checkbox">
       </div>
-    </div>
-
-    <div id="controls">
-      <button id="play" class="unpressed" disabled>Loading</button>
-      <button id="clear">Clear</button>
-      <button id="randomize">Randomize</button>
-      <label>
-        <input type="checkbox" id="autoevolve" checked> Auto-evolve
-      </label>
-      <button id="next">Next</button>
-      <button id="save">Save</button>
-      <button id="help">?</button>
     </div>
 
     <div id="terminal"></div>
