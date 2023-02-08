@@ -58,7 +58,7 @@ h1 {
 }
 
 #sequencer.loaded {
-  opacity: 0.8;
+  opacity: 0.9;
 }
 
 #sequencer input {
@@ -87,7 +87,6 @@ h1 {
   transform: scale(0);
   transition: 100ms transform ease-in-out;
   box-shadow: inset 16px 8px var(--seqActive);
-  mix-blend-mode: luminosity;
 }
 
 #sequencer input:checked::before {
