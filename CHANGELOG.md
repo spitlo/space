@@ -2,6 +2,12 @@
 
 This changelog is automatically generated.
 
+## v0.12.4
+
+- v0.12.4 [`abb8acb`](../../commit/abb8acb0cc45ac6026322695450cd96b0eae7a83)
+- Try updating changelog as part of build commit [`57a5f66`](../../commit/57a5f662ffdaad937f4728ddd75ee51802971018)
+- Make active steps even more visible in most scenarios [`f327bc0`](../../commit/f327bc03fe2c8eb1962885ef2873bfcbf814c60e)
+
 ## v0.12.3
 
 - v0.12.3 [`c32cc98`](../../commit/c32cc982a5305764dd37d2f68760b00d03d884f3)
