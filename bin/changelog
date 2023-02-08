@@ -46,7 +46,7 @@ function commit_changelog() {
 function main() {
   clear_changelog
   write_changelog
-  commit_changelog
+  # commit_changelog
 }
 
 main

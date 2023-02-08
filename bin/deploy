@@ -7,7 +7,6 @@ source bin/env.globals
 
 DEFAULT_METHOD="patch"
 MAIN_BRANCH="main"
-INITIAL_VERSION="0.0.0"
 FORCE="no"
 USAGE="
 ${BROWN}Usage${NC}: $0 [ARGUMENTS]
@@ -64,11 +63,13 @@ rm -rf ./docs
 # Build site
 yarn build
 
+# Generate changelog
+bin/changelog
+
 # Add built site, commit and push tags
-git add ./docs
+git add ./docs ./CHANGELOG.md
 git commit --message "Deploy version $new_version"
 git push --tags
 
-# Generate changelog and push everything
-bin/changelog
+# Push everything
 git push origin "$MAIN_BRANCH"
