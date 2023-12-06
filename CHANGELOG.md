@@ -2,6 +2,11 @@
 
 This changelog is automatically generated.
 
+## v0.12.5
+
+- v0.12.5 [`3769ed4`](../../commit/3769ed4491f012420c780ed161ba4b920aacc46e)
+- Added 'Dothraki' and 'Deathray' to wordlist. Hoping for bandname 'Dothraki Deathray' :crossing_fingers: [`167f4ef`](../../commit/167f4ef9b31c3b56e9730b800c508f6b52d5371a)
+
 ## v0.12.4
 
 - v0.12.4 [`abb8acb`](../../commit/abb8acb0cc45ac6026322695450cd96b0eae7a83)
