@@ -15,6 +15,8 @@ const words = [
   'Cruise',
   'Cyborg',
   'Danger',
+  'Deathray',
+  'Dothraki',
   'Dreams',
   'Drive',
   'Electric',
