@@ -5,7 +5,7 @@ import { load, save, stash, storage } from './storage'
 import { terminal } from './term'
 
 // Put all samples in buffers so they are ready to go when we start
-const numberOfKits = 6
+const numberOfKits = 9
 const sounds = []
 const createKit = (kitNumber) => {
   const kit = {}
@@ -115,7 +115,7 @@ Note collection: ${noteCollection}
   }
 }
 
-const playNoteOrSample = (row) => {
+const playNoteOrSample = (row, time) => {
   // For the last row, play notes sometimes and sample sometimes. If we’re
   // in continuous synth mode, we always play the note, hoping to perhaps
   // hear a faint melody.
@@ -132,9 +132,9 @@ const playNoteOrSample = (row) => {
     const octave = getRandomInt(2, 7)
     const duration = getArrayElement(durations)
     const now = Tone.now()
-    synth.triggerAttackRelease(nextNote + octave, duration,  now)
+    synth.triggerAttackRelease(nextNote + octave, duration,  time)
   } else {
-    sounds[row].start()
+    sounds[row].start(time)
   }
 }
 
@@ -170,7 +170,7 @@ const sequencer = (loadOnly = false) => {
       const current = document.querySelector(`.row${row} input:nth-child(${step + 1})`)
 
       if (current && current.checked) {
-        playNoteOrSample(row)
+        playNoteOrSample(row, time)
       }
 
       Tone.Draw.schedule(() => {

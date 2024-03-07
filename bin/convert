@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+set -eu
+
+cd "$1"
+
+for filename in *.wav; do
+  ffmpeg -i "$filename" -ar 44100 _"$filename"
+  rm "$filename"
+  mv _"$filename" "$filename"
+done
+
+cd -
