@@ -2,6 +2,11 @@
 
 This changelog is automatically generated.
 
+## v0.13.0
+
+- v0.13.0 [`915794d`](../../commit/915794daa58c892e9da00cfd5a3e6a5359edeb86)
+- Add three new sets. Fix control div covering sequencer. Add script to convert sample rate [`debfff5`](../../commit/debfff598585d6acb749de87db20b5445e9f1182)
+
 ## v0.12.5
 
 - v0.12.5 [`3769ed4`](../../commit/3769ed4491f012420c780ed161ba4b920aacc46e)
