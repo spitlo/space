@@ -2,11 +2,11 @@
 
 Space is some kind of generative ambient music machine inspired by a bunch of tiling images I created using [ImaginAIry](https://github.com/brycedrennan/imaginAIry/). It’s available online at [spitlo.com/space/](https://spitlo.com/space/).
 
-Space also has a sibiling of sorts, /'siːkwənt/, available online at [spitlo.com/sikwent/](https://spitlo.com/sikwent/).
+Space also has a sibling of sorts, /'siːkwənt/, available online at [spitlo.com/sikwent/](https://spitlo.com/sikwent/).
 
 ## The look
 
-The spinning logo thing is done with [Zdog](https://github.com/metafizzy/zdog) and [Zfont](https://github.com/jaames/zfont). Colors are extracted from the current background image using [node-vibrant](https://github.com/Vibrant-Colors/node-vibrant). Random song and band names are based on [Synthgen 2000](https://github.com/tirdadc/synthwave).
+Background images are picked at random on load, from a bank of about 80. The spinning logo thing is done with [Zdog](https://github.com/metafizzy/zdog) and [Zfont](https://github.com/jaames/zfont). Colors are extracted from the current background image using [node-vibrant](https://github.com/Vibrant-Colors/node-vibrant). Random song and band names are based on [Synthgen 2000](https://github.com/tirdadc/synthwave).
 
 ## The sound
 
