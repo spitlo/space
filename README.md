@@ -17,6 +17,10 @@ The samples are organized in kits, of which there are nine at the moment. Kits o
 Each sample in a kit is represented by a channel. On load, a pattern is semi-randomly set on each channel. As long as "Auto-evolve" is ticked, this pattern will change over time, creating a never*-repeating soundscape.
 (* Never as in "very seldom")
 
+If you want to create your own sequence, simply clear the playing sequence, disable auto-evolve and create your own sequence by clicking the corresponding dots.
+
+Hitting "Save" will save the current state of your composition in the URL, copy it from the address bar to share or to keep it safe somewhere. Or bookmark it!
+
 Channel 10 has a special role (no, it’s not a drum track, sorry MIDI heads) -- everytime a note is struck on it, it either plays the sample for that track, or a short sine note. The sine note is picked randomly on each play, from an array of notes (usually a scale) picked randomly on each load. The octave is also set randomly for each note, ranging from 2 to 7. Finally, the duration is set randomly from an eighth note to a sixty-fourth note, with shorter notes being a bit more likely.
 
 ## To do
