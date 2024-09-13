@@ -30,7 +30,7 @@ Channel 10 has a special role (no, it’s not a drum track, sorry MIDI heads) --
 - [ ] Move Vibrant logic to a bin script and generate a .js mapping between images and colors?
 - [x] Add "Help" button
 - [x] Add a few more kits and load a random one on each reload
-- [-] Enable "saving" all settings in a URI fragment
+- [x] Enable "saving" all settings in a URI fragment
   - [ ] ~~If user has cleared and then saves, promt for band and song name before setting save URL?~~
   - [x] Include auto-evolve value in save
 - [x] Leave octave out of scales and set at random on play?
